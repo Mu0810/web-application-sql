@@ -24,6 +24,7 @@
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#modules">Overview</a></li>
             <li><a href="#book-map">Book Map</a></li>
+            <li><a href="#mission-control">Progress</a></li>
             <li><a href="#module1">M01</a></li>
             <li><a href="#module2">M02</a></li>
             <li><a href="#module3">M03</a></li>
@@ -104,6 +105,31 @@
             <div><span>02</span><strong>Search anything</strong><small>Press <kbd>⌘ K</kbd> to jump instantly</small></div>
             <div><span>03</span><strong>Safe by design</strong><small>No database or network calls</small></div>
             <div><span>04</span><strong>Progress persists</strong><small>Resume where you stopped</small></div>
+        </div>
+    </section>
+
+    <section class="mission-control" id="mission-control" aria-labelledby="mission-title">
+        <div class="container">
+            <div class="mission-heading reveal">
+                <div><p class="eyebrow">Local learning telemetry</p><h2 id="mission-title">Mission control.</h2><p>Your progress stays in this browser. Complete chapters, save bookmarks, pass the defensive checkpoint, and export your learning record.</p></div>
+                <div class="mission-actions"><button id="exportProgress" type="button">Export progress <span aria-hidden="true">↓</span></button><button id="resetProgress" type="button">Reset local data</button></div>
+            </div>
+            <div class="mission-grid reveal">
+                <div class="readiness-panel">
+                    <span class="storage-status" id="storageStatus">Storage: checking…</span>
+                    <div class="readiness-ring" id="readinessRing"><div><strong id="readinessPercent">0%</strong><span>Readiness</span></div></div>
+                    <p id="readinessMessage">Begin with any chapter. Your field record will update automatically.</p>
+                    <a id="nextChapterLink" href="#module1">Open first chapter <span aria-hidden="true">→</span></a>
+                </div>
+                <div class="mission-metrics">
+                    <article><span>CHAPTERS</span><strong id="chapterMetric">0 / 23</strong><small>Manually completed</small></article>
+                    <article><span>CHECKPOINT</span><strong id="quizMetric">0 / 12</strong><small>Best defensive score</small></article>
+                    <article><span>BOOKMARKS</span><strong id="bookmarkMetric">0</strong><small>Saved for review</small></article>
+                    <article><span>MODULES</span><strong id="moduleMetric">0 / 4</strong><small>Visited in this browser</small></article>
+                </div>
+                <div class="module-telemetry" id="moduleTelemetry" aria-label="Module completion telemetry"></div>
+                <div class="bookmark-panel"><div class="bookmark-head"><span>REVIEW QUEUE</span><strong id="bookmarkCount">0 saved</strong></div><div id="bookmarkList" class="bookmark-list"><p>No bookmarks yet. Use the bookmark control on any chapter.</p></div></div>
+            </div>
         </div>
     </section>
 
@@ -613,6 +639,26 @@ connection.execute(sql, [username, hash]);</code></pre></div></div>
         </div>
     </section>
 
+    <section class="checkpoint-section" id="checkpoint" aria-labelledby="checkpoint-title">
+        <div class="container checkpoint-layout">
+            <div class="checkpoint-intro reveal">
+                <p class="eyebrow">Defensive checkpoint // 12 signals</p>
+                <h2 id="checkpoint-title">Prove the boundary holds.</h2>
+                <p>Twelve scenario questions span the complete book—from interpreter boundaries and blind behavior to XPath, LDAP, NoSQL, canonicalization, and least privilege.</p>
+                <div class="checkpoint-score"><span>BEST SCORE</span><strong id="checkpointBest">0 / 12</strong><small id="checkpointRank">Not attempted</small></div>
+                <div class="checkpoint-track" id="checkpointTrack" aria-label="Question progress"></div>
+                <p class="checkpoint-note">Answers and progress remain on this device. Questions focus on recognition and defense, not unauthorized exploitation.</p>
+            </div>
+            <div class="quiz-console reveal" id="quizConsole">
+                <div class="quiz-top"><span id="quizCounter">QUESTION 01 / 12</span><button id="restartQuiz" type="button">Restart</button></div>
+                <div id="quizQuestion" class="quiz-question" aria-live="polite"></div>
+                <div id="quizOptions" class="quiz-options" role="group" aria-labelledby="quizPrompt"></div>
+                <div id="quizFeedback" class="quiz-feedback" aria-live="polite"></div>
+                <div class="quiz-actions"><button id="quizPrevious" type="button">← Previous</button><button id="quizNext" type="button" disabled>Check answer</button></div>
+            </div>
+        </div>
+    </section>
+
     <section class="reading-section" id="reading">
         <div class="container reading-grid">
             <div class="reading-intro reveal">
@@ -639,7 +685,7 @@ connection.execute(sql, [username, hash]);</code></pre></div></div>
     </section>
     </main>
 
-    <footer><div class="container footer-grid"><div><span class="brand-text">SQLi<span class="accent">Lab</span></span><p>An independent interactive adaptation of the complete 93-page Hakin9 workshop material. For education and explicitly authorized testing only.</p></div><div><span>Course map</span><a href="#book-map">93-page book map</a><a href="#module1">Foundations</a><a href="#module2">Advanced SQLi</a><a href="#module3">XPath &amp; LDAP</a><a href="#module4">Defense</a><a href="#reading">Conclusion &amp; reading</a></div><div><span>Source material</span><p>Web Application Hacking: Advanced SQL Injection and Data Store Attacks</p><small>Thomas Serminis · Hakin9 Workshops · Vol. 12, No. 03</small></div></div><div class="footer-line"><span>NO DATABASE. NO NETWORK CALLS. SAFE SIMULATION.</span><a href="#home">Back to top ↑</a></div></footer>
+    <footer><div class="container footer-grid"><div><span class="brand-text">SQLi<span class="accent">Lab</span></span><p>An independent interactive adaptation of the complete 93-page Hakin9 workshop material. For education and explicitly authorized testing only.</p></div><div><span>Course map</span><a href="#mission-control">Mission control</a><a href="#book-map">93-page book map</a><a href="#module1">Foundations</a><a href="#module2">Advanced SQLi</a><a href="#module3">XPath &amp; LDAP</a><a href="#module4">Defense</a><a href="#checkpoint">Defensive checkpoint</a><a href="#reading">Conclusion &amp; reading</a></div><div><span>Source material</span><p>Web Application Hacking: Advanced SQL Injection and Data Store Attacks</p><small>Thomas Serminis · Hakin9 Workshops · Vol. 12, No. 03</small></div></div><div class="footer-line"><span>NO DATABASE. NO NETWORK CALLS. SAFE SIMULATION.</span><a href="#home">Back to top ↑</a></div></footer>
 
     <dialog class="search-dialog" id="searchDialog" aria-labelledby="searchTitle">
         <div class="search-shell">
@@ -653,5 +699,6 @@ connection.execute(sql, [username, hash]);</code></pre></div></div>
 
     <div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard</div>
     <script src="js/main.js"></script>
+    <script src="js/learning.js"></script>
 </body>
 </html>

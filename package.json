@@ -1,11 +1,11 @@
 {
   "name": "sql-injection-lab",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Advanced SQL Injection & Data Store Attacks - Interactive Learning Platform",
   "main": "index.html",
   "scripts": {
-    "start": "npx serve .",
-    "dev": "npx serve . -l 3000"
+    "start": "node serve.js",
+    "dev": "node serve.js"
   },
   "keywords": ["sql-injection", "web-security", "cybersecurity", "learning-platform"],
   "author": "Security Lab",

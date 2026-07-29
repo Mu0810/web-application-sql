@@ -1,9 +1,26 @@
 const $ = (selector, context = document) => context.querySelector(selector);
 const $$ = (selector, context = document) => [...context.querySelectorAll(selector)];
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const memoryStorage = new Map();
 const storage = {
-  get(key, fallback = null) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } },
-  set(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* private mode */ } }
+  persistent: true,
+  get(key, fallback = null) {
+    try {
+      const value = JSON.parse(localStorage.getItem(key));
+      if (value != null) memoryStorage.set(key, value);
+      return value ?? memoryStorage.get(key) ?? fallback;
+    } catch { this.persistent = false; return memoryStorage.get(key) ?? fallback; }
+  },
+  set(key, value) {
+    memoryStorage.set(key, value);
+    try { localStorage.setItem(key, JSON.stringify(value)); }
+    catch { this.persistent = false; }
+  },
+  clearPrefix(prefix) {
+    [...memoryStorage.keys()].filter(key => key.startsWith(prefix)).forEach(key => memoryStorage.delete(key));
+    try { Object.keys(localStorage).filter(key => key.startsWith(prefix)).forEach(key => localStorage.removeItem(key)); }
+    catch { this.persistent = false; }
+  }
 };
 
 // Progressive reveal: content remains visible if JavaScript or IntersectionObserver fails.
@@ -215,6 +232,7 @@ const sectionObserver = new IntersectionObserver(entries => entries.forEach(entr
     const rail = $(`.course-rail a[data-rail="${id}"]`);
     rail?.classList.add('visited');
     updateContinueLink();
+    window.updateLearningMission?.();
   }
 }), { rootMargin: '-28% 0px -62%', threshold: 0 });
 courseSections.forEach(section => sectionObserver.observe(section));
@@ -263,6 +281,7 @@ function updateChecklist() {
   const complete = checklistItems.filter(item => item.checked).length;
   $('#checkProgress').textContent = `${complete} / ${checklistItems.length} complete`;
   $('#checkBar').style.width = `${complete / checklistItems.length * 100}%`;
+  window.updateLearningMission?.();
 }
 updateChecklist();
 
