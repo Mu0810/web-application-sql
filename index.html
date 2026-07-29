@@ -3,68 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQLi Lab - Advanced SQL Injection & Data Store Attacks</title>
+    <title>SQLi Lab — Advanced SQL Injection & Data Store Defense</title>
+    <meta name="description" content="An immersive, defensive-first learning experience covering all 93 pages of Advanced SQL Injection and Data Store Attacks.">
+    <meta name="theme-color" content="#030807">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/upgrade.css">
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to course content</a>
+    <div class="reading-progress" aria-hidden="true"><i id="readingProgressBar"></i></div>
     <div class="matrix-bg" id="matrixBg"></div>
-    <nav class="navbar" id="navbar">
-        <div class="nav-brand">
-            <span class="brand-icon">&#9760;</span>
+    <nav class="navbar" id="navbar" aria-label="Primary navigation">
+        <a class="nav-brand" href="#home" aria-label="SQLi Lab home">
+            <span class="brand-icon" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="brand-text">SQLi<span class="accent">Lab</span></span>
-        </div>
+            <span class="brand-edition">93-page field guide</span>
+        </a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#modules">Overview</a></li>
             <li><a href="#book-map">Book Map</a></li>
-            <li><a href="#module1">Module 1</a></li>
-            <li><a href="#module2">Module 2</a></li>
-            <li><a href="#module3">Module 3</a></li>
-            <li><a href="#module4">Module 4</a></li>
-            <li><a href="#lab">Live Lab</a></li>
+            <li><a href="#module1">M01</a></li>
+            <li><a href="#module2">M02</a></li>
+            <li><a href="#module3">M03</a></li>
+            <li><a href="#module4">M04</a></li>
+            <li><a href="#lab">Lab</a></li>
         </ul>
-        <button class="nav-toggle" id="navToggle">
-            <span></span><span></span><span></span>
-        </button>
+        <div class="nav-actions">
+            <button class="search-trigger" id="searchTrigger" type="button" aria-haspopup="dialog" aria-controls="searchDialog"><span aria-hidden="true">⌕</span><span>Search course</span><kbd>⌘K</kbd></button>
+            <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation" aria-controls="navLinks" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </nav>
+
+    <aside class="course-rail" aria-label="Course module progress">
+        <span class="rail-label">Course</span>
+        <a href="#module1" data-rail="module1"><i></i><span>01</span></a>
+        <a href="#module2" data-rail="module2"><i></i><span>02</span></a>
+        <a href="#module3" data-rail="module3"><i></i><span>03</span></a>
+        <a href="#module4" data-rail="module4"><i></i><span>04</span></a>
+        <b id="railPercent">0%</b>
+    </aside>
+
+    <main id="main-content">
 
 
     <!-- HERO SECTION -->
     <section class="hero" id="home">
+        <div class="hero-network" aria-hidden="true">
+            <span class="network-line l1"></span><span class="network-line l2"></span><span class="network-line l3"></span>
+            <i class="network-node n1"></i><i class="network-node n2"></i><i class="network-node n3"></i><i class="network-node n4"></i>
+        </div>
         <div class="hero-content">
-            <div class="hero-badge">HAKIN9 WORKSHOP</div>
+            <div class="hero-kicker"><span class="hero-badge">HAKIN9 WORKSHOP</span><span>VOL. 12 · NO. 03</span><span>AUTHORIZED LABS ONLY</span></div>
             <h1 class="hero-title">
+                <span class="title-index">FIELD GUIDE / 001</span>
                 <span class="glitch" data-text="Advanced SQL Injection">Advanced SQL Injection</span>
-                <br><span class="subtitle">&amp; Data Store Attacks</span>
+                <span class="subtitle">&amp; Data Store Attacks</span>
             </h1>
-            <p class="hero-desc">
-                Master the art of SQL Injection, XPath, LDAP, and NoSQL attacks.
-                Learn advanced exploitation techniques and defense mechanisms through
-                interactive examples and real-world scenarios.
-            </p>
-            <div class="hero-stats">
-                <div class="stat"><span class="stat-num">4</span><span class="stat-label">Modules</span></div>
-                <div class="stat"><span class="stat-num">18</span><span class="stat-label">CPE Credits</span></div>
-                <div class="stat"><span class="stat-num">93</span><span class="stat-label">Book Pages</span></div>
-                <div class="stat"><span class="stat-num">3</span><span class="stat-label">DBMS Covered</span></div>
-            </div>
+            <p class="hero-desc">A complete, immersive field guide to understanding SQL, XPath, LDAP, XML, JavaScript, and NoSQL injection—then engineering the boundary that stops them.</p>
             <div class="hero-actions">
-                <a href="#modules" class="btn btn-primary">Start Learning</a>
-                <a href="#lab" class="btn btn-secondary">Try Live Lab</a>
+                <a href="#modules" class="btn btn-primary"><span>Enter the field guide</span><b aria-hidden="true">↗</b></a>
+                <a href="#lab" class="btn btn-secondary"><span>Open safe simulator</span><b aria-hidden="true">→</b></a>
+                <a href="#modules" class="continue-link" id="continueLink" hidden><small>Continue learning</small><strong id="continueLabel">Resume course</strong></a>
+            </div>
+            <div class="hero-stats" aria-label="Course facts">
+                <div class="stat"><span class="stat-num">04</span><span class="stat-label">Dense modules</span></div>
+                <div class="stat"><span class="stat-num">18</span><span class="stat-label">CPE credits</span></div>
+                <div class="stat"><span class="stat-num">93</span><span class="stat-label">Pages mapped</span></div>
+                <div class="stat"><span class="stat-num">05</span><span class="stat-label">Data languages</span></div>
             </div>
         </div>
-        <div class="hero-terminal">
-            <div class="terminal-header">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-                <span class="terminal-title">sql_injection.sh</span>
+        <div class="hero-visual" aria-label="Course system status">
+            <div class="visual-topline"><span>DATASTORE / INTERPRETER BOUNDARY</span><span class="live-dot">SYSTEM SAFE</span></div>
+            <div class="data-core" aria-hidden="true">
+                <div class="orbit orbit-a"><i></i><i></i><i></i></div>
+                <div class="orbit orbit-b"><i></i><i></i></div>
+                <div class="core-halo"></div>
+                <div class="database-stack"><i></i><i></i><i></i><b>DB</b></div>
+                <span class="core-callout c1">INPUT</span><span class="core-callout c2">QUERY</span><span class="core-callout c3">OUTPUT</span>
             </div>
-            <div class="terminal-body" id="terminalBody">
-                <div class="terminal-line"><span class="prompt">$</span> <span class="typing" id="heroTyping"></span></div>
+            <div class="visual-metrics">
+                <div><span>Boundary</span><strong>ENFORCED</strong><i></i></div>
+                <div><span>Network</span><strong>OFFLINE</strong><i></i></div>
+                <div><span>Database</span><strong>SIMULATED</strong><i></i></div>
             </div>
+            <div class="hero-terminal">
+                <div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">course_runtime.sh</span></div>
+                <div class="terminal-body" id="terminalBody"><div class="terminal-line"><span class="prompt">$</span> <span class="typing" id="heroTyping"></span></div></div>
+            </div>
+        </div>
+        <a class="scroll-cue" href="#modules"><span>Scroll to explore</span><i></i></a>
+    </section>
+
+    <section class="experience-strip" aria-label="Learning experience features">
+        <div class="container">
+            <div><span>01</span><strong>Complete coverage</strong><small>Every supplied chapter mapped</small></div>
+            <div><span>02</span><strong>Search anything</strong><small>Press <kbd>⌘ K</kbd> to jump instantly</small></div>
+            <div><span>03</span><strong>Safe by design</strong><small>No database or network calls</small></div>
+            <div><span>04</span><strong>Progress persists</strong><small>Resume where you stopped</small></div>
         </div>
     </section>
 
@@ -563,7 +602,14 @@ connection.execute(sql, [username, hash]);</code></pre></div></div>
     <section class="lab-section" id="lab">
         <div class="container lab-shell reveal">
             <div class="lab-copy"><p class="eyebrow">Browser-only safe simulator</p><h2>See the boundary break—then fix it.</h2><p>This demo never connects to a database. It visualizes how string concatenation changes query structure while binding preserves data as a value.</p><div class="lab-presets"><button data-value="O'Reilly">Valid apostrophe</button><button data-value="Ada">Normal value</button><button data-value="admin'--">Injection-shaped input</button></div></div>
-            <div class="simulator"><label for="labInput">Username value</label><div class="input-row"><input id="labInput" value="O'Reilly" maxlength="50"><button id="runLab">Analyze</button></div><div class="query-result vulnerable"><span>CONCATENATED</span><code id="unsafeQuery"></code><p id="unsafeNote"></p></div><div class="query-result safe"><span>PARAMETERIZED</span><code>SELECT * FROM users WHERE username = ?</code><p><b>Bound value:</b> <output id="boundValue"></output></p></div></div>
+            <div class="simulator">
+                <div class="simulator-head"><span>QUERY BOUNDARY ANALYZER</span><i>LOCAL / OFFLINE</i></div>
+                <label for="labInput">Username value</label>
+                <div class="input-row"><input id="labInput" value="O'Reilly" maxlength="50" autocomplete="off"><button id="runLab" type="button">Analyze <span aria-hidden="true">↗</span></button></div>
+                <div class="token-stream" id="tokenStream" aria-label="Query token visualization"></div>
+                <div class="query-result vulnerable"><span>CONCATENATED / UNSAFE</span><code id="unsafeQuery"></code><p id="unsafeNote"></p></div>
+                <div class="query-result safe"><span>PARAMETERIZED / BOUND</span><code>SELECT * FROM users WHERE username = ?</code><p><b>Bound value:</b> <output id="boundValue"></output></p></div>
+            </div>
         </div>
     </section>
 
@@ -591,8 +637,19 @@ connection.execute(sql, [username, hash]);</code></pre></div></div>
             <label><input type="checkbox"><span>All datastore values are bound, never concatenated</span></label><label><input type="checkbox"><span>Structural choices map to fixed allowlists</span></label><label><input type="checkbox"><span>XML parsers disable DTDs and external entities</span></label><label><input type="checkbox"><span>LDAP values use a dedicated escaping API</span></label><label><input type="checkbox"><span>NoSQL request bodies have strict schemas and types</span></label><label><input type="checkbox"><span>Database accounts follow least privilege</span></label><label><input type="checkbox"><span>DBMS file, OS, and outbound network features are restricted</span></label><label><input type="checkbox"><span>Secrets are hashed/encrypted and retention is minimized</span></label><label><input type="checkbox"><span>Error responses reveal no database details</span></label><label><input type="checkbox"><span>Second-order data flows are covered by code review</span></label>
         </div><div class="progress-row"><span id="checkProgress">0 / 10 complete</span><div><i id="checkBar"></i></div></div></div>
     </section>
+    </main>
 
     <footer><div class="container footer-grid"><div><span class="brand-text">SQLi<span class="accent">Lab</span></span><p>An independent interactive adaptation of the complete 93-page Hakin9 workshop material. For education and explicitly authorized testing only.</p></div><div><span>Course map</span><a href="#book-map">93-page book map</a><a href="#module1">Foundations</a><a href="#module2">Advanced SQLi</a><a href="#module3">XPath &amp; LDAP</a><a href="#module4">Defense</a><a href="#reading">Conclusion &amp; reading</a></div><div><span>Source material</span><p>Web Application Hacking: Advanced SQL Injection and Data Store Attacks</p><small>Thomas Serminis · Hakin9 Workshops · Vol. 12, No. 03</small></div></div><div class="footer-line"><span>NO DATABASE. NO NETWORK CALLS. SAFE SIMULATION.</span><a href="#home">Back to top ↑</a></div></footer>
+
+    <dialog class="search-dialog" id="searchDialog" aria-labelledby="searchTitle">
+        <div class="search-shell">
+            <div class="search-head"><div><span>COURSE COMMAND</span><h2 id="searchTitle">Find anything.</h2></div><button id="searchClose" type="button" aria-label="Close course search">ESC</button></div>
+            <label class="search-field" for="courseSearch"><span aria-hidden="true">⌕</span><input id="courseSearch" type="search" role="combobox" aria-label="Search course chapters" aria-autocomplete="list" aria-controls="searchResults" aria-expanded="false" aria-activedescendant="" placeholder="Search blind SQL, LDAP, parameterization…" autocomplete="off"><kbd aria-hidden="true">↵</kbd></label>
+            <p class="search-hint" id="searchHint">Search every chapter heading and jump directly to the lesson.</p>
+            <div class="search-results" id="searchResults" role="listbox" aria-label="Course search results"></div>
+            <div class="search-foot"><span><kbd>↑</kbd><kbd>↓</kbd> Navigate</span><span><kbd>Enter</kbd> Open</span><span>93 pages indexed</span></div>
+        </div>
+    </dialog>
 
     <div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard</div>
     <script src="js/main.js"></script>

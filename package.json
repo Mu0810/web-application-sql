@@ -1,6 +1,6 @@
 {
   "name": "sql-injection-lab",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Advanced SQL Injection & Data Store Attacks - Interactive Learning Platform",
   "main": "index.html",
   "scripts": {
