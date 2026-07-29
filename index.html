@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLi Lab - Advanced SQL Injection & Data Store Attacks</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="matrix-bg" id="matrixBg"></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <span class="brand-icon">&#9760;</span>
+            <span class="brand-text">SQLi<span class="accent">Lab</span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#modules">Overview</a></li>
+            <li><a href="#book-map">Book Map</a></li>
+            <li><a href="#module1">Module 1</a></li>
+            <li><a href="#module2">Module 2</a></li>
+            <li><a href="#module3">Module 3</a></li>
+            <li><a href="#module4">Module 4</a></li>
+            <li><a href="#lab">Live Lab</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">HAKIN9 WORKSHOP</div>
+            <h1 class="hero-title">
+                <span class="glitch" data-text="Advanced SQL Injection">Advanced SQL Injection</span>
+                <br><span class="subtitle">&amp; Data Store Attacks</span>
+            </h1>
+            <p class="hero-desc">
+                Master the art of SQL Injection, XPath, LDAP, and NoSQL attacks.
+                Learn advanced exploitation techniques and defense mechanisms through
+                interactive examples and real-world scenarios.
+            </p>
+            <div class="hero-stats">
+                <div class="stat"><span class="stat-num">4</span><span class="stat-label">Modules</span></div>
+                <div class="stat"><span class="stat-num">18</span><span class="stat-label">CPE Credits</span></div>
+                <div class="stat"><span class="stat-num">93</span><span class="stat-label">Book Pages</span></div>
+                <div class="stat"><span class="stat-num">3</span><span class="stat-label">DBMS Covered</span></div>
+            </div>
+            <div class="hero-actions">
+                <a href="#modules" class="btn btn-primary">Start Learning</a>
+                <a href="#lab" class="btn btn-secondary">Try Live Lab</a>
+            </div>
+        </div>
+        <div class="hero-terminal">
+            <div class="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="terminal-title">sql_injection.sh</span>
+            </div>
+            <div class="terminal-body" id="terminalBody">
+                <div class="terminal-line"><span class="prompt">$</span> <span class="typing" id="heroTyping"></span></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- MODULES OVERVIEW -->
+    <section class="modules-overview" id="modules">
+        <div class="container">
+            <h2 class="section-title">Course <span class="accent">Modules</span></h2>
+            <p class="section-desc">A comprehensive journey from SQL basics to advanced exploitation and defense</p>
+            <div class="modules-grid">
+                <a href="#module1" class="module-card" data-module="1">
+                    <div class="module-num">01</div>
+                    <h3>Introduction to SQL & Data Stores</h3>
+                    <p>SQL fundamentals, data store injection, XML injection, JavaScript injection, UNION operator, database fingerprinting</p>
+                    <div class="module-tags">
+                        <span>SQL Basics</span><span>Injection Types</span><span>Fingerprinting</span>
+                    </div>
+                </a>
+                <a href="#module2" class="module-card" data-module="2">
+                    <div class="module-num">02</div>
+                    <h3>Advanced SQL Injection</h3>
+                    <p>Data extraction, filter bypass, second-order injection, blind SQLi, time-based attacks, file system access</p>
+                    <div class="module-tags">
+                        <span>Blind SQLi</span><span>Time Delays</span><span>File Access</span>
+                    </div>
+                </a>
+                <a href="#module3" class="module-card" data-module="3">
+                    <div class="module-num">03</div>
+                    <h3>XPath, LDAP & NoSQL Injection</h3>
+                    <p>Encoding & evasion techniques, automation tools (SQLMap, SQL Ninja), XPath and LDAP exploitation</p>
+                    <div class="module-tags">
+                        <span>XPath</span><span>LDAP</span><span>SQLMap</span>
+                    </div>
+                </a>
+                <a href="#module4" class="module-card" data-module="4">
+                    <div class="module-num">04</div>
+                    <h3>Security Measures & Defense</h3>
+                    <p>Input validation, output encoding, parameterized queries, least privileges, canonicalization, NoSQL security</p>
+                    <div class="module-tags">
+                        <span>Defense</span><span>Validation</span><span>Best Practices</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="course-brief" aria-labelledby="course-brief-title">
+        <div class="container brief-grid">
+            <article class="brief-copy reveal">
+                <p class="eyebrow">Course file // 18 CPE credits</p>
+                <h2 id="course-brief-title">Think like an attacker.<br><span>Build like a defender.</span></h2>
+                <p>This self-paced field guide transforms Thomas Serminis' workshop into an interactive reference. It covers relational, XML, directory, and NoSQL data stores—from first principles to secure engineering.</p>
+                <div class="scope-note"><strong>Authorized environments only.</strong> Practice in an isolated lab such as DVWA. Never test systems without explicit permission.</div>
+            </article>
+            <div class="brief-panel reveal">
+                <p class="micro-label">Learning outcomes</p>
+                <ul class="check-list">
+                    <li>Understand SQL injection mechanics and statement contexts</li>
+                    <li>Recognize XPath, LDAP, XML, JavaScript, and NoSQL injection</li>
+                    <li>Analyze blind, second-order, encoded, and time-based behavior</li>
+                    <li>Apply validation, parameterization, least privilege, and safe storage</li>
+                </ul>
+                <div class="instructor-row">
+                    <div class="avatar" aria-hidden="true">TS</div>
+                    <div><span>Course instructor</span><strong>Thomas Serminis</strong><small>8 years in security · Java, C++, Python · penetration-testing and Android security editor · security blogger</small></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lab-setup">
+        <div class="container setup-strip reveal">
+            <div><p class="micro-label">Optional isolated lab</p><h3>VirtualBox → Linux → XAMPP → DVWA</h3><p class="setup-requirement">Requirement: any desktop OS capable of running a local virtual machine.</p></div>
+            <ol><li>Create a VM, select the guest OS, allocate RAM, and create a virtual disk.</li><li>Install a Linux guest, then install and start XAMPP.</li><li>Place DVWA under the local web root and browse only to the loopback/local VM address.</li><li>Configure DVWA's local database connection, then create its training tables.</li></ol>
+            <p class="setup-warning"><strong>Permission is mandatory.</strong> The book explicitly limits these techniques to private, local networks. Use a host-only or otherwise isolated VM, snapshots, and intentionally vulnerable targets. Historic installation details and default credentials should not be reused outside that disposable lab.</p>
+        </div>
+    </section>
+
+    <section class="book-map" id="book-map">
+        <div class="container">
+            <div class="section-heading reveal">
+                <p class="eyebrow">Complete-book coverage // pages 9–93</p>
+                <h2>Every chapter, mapped.</h2>
+                <p class="section-desc">The supplied workshop contains front matter plus four modules. This site condenses every chapter into a scannable, defensive-first learning path.</p>
+            </div>
+            <div class="book-map-grid reveal">
+                <a class="book-range pre" href="#modules"><span>09–13</span><div><small>Pre-course</small><h3>Web applications &amp; SQL</h3><p>Suggested reading · data stores · optional VirtualBox, Linux, XAMPP, and DVWA laboratory</p></div></a>
+                <a class="book-range" href="#module1"><span>14–33</span><div><small>Module 01</small><h3>Foundations</h3><p>SQL and data stores · procedural differences · data-store, XML, JavaScript, and SQL injection · statement contexts · UNION · fingerprinting</p></div></a>
+                <a class="book-range" href="#module2"><span>34–55</span><div><small>Module 02</small><h3>Advanced SQL</h3><p>Metadata extraction · filters · second order · out-of-band and numeric channels · blind and time-based inference · file-system boundaries</p></div></a>
+                <a class="book-range" href="#module3"><span>56–74</span><div><small>Module 03</small><h3>Beyond SQL</h3><p>URL, character, and hex encoding · comments, null bytes, whitespace, and concatenation · sqlmap · SQLninja · XPath · blind XPath · LDAP</p></div></a>
+                <a class="book-range" href="#module4"><span>75–93</span><div><small>Module 04</small><h3>Security measures</h3><p>NoSQL · validation · output encoding · prepared statements · least privilege · canonicalization · sensitive data · LDAP, XPath, and NoSQL hardening</p></div></a>
+            </div>
+            <div class="coverage-meter reveal"><div><span>93 / 93 pages mapped</span><strong>100%</strong></div><i></i><p>The ebook notes that original course videos and selected exercises are not included in the publication; this adaptation covers the supplied written material.</p></div>
+        </div>
+    </section>
+
+    <!-- MODULE 1 -->
+    <section class="module-section" id="module1">
+        <div class="container">
+            <div class="module-header">
+                <span class="module-badge">Module 01</span>
+                <h2>Introduction to SQL, Data Stores & Injection Attacks</h2>
+                <p class="module-intro">Understanding how SQL and data stores work in web servers, and introduction to data store attacking with practical examples.</p>
+            </div>
+
+            <div class="content-block">
+                <h3><span class="icon">&#128218;</span> What is a Data Store?</h3>
+                <div class="info-card">
+                    <p>A data store is a repository for persistently storing and managing collections of data. This includes not just databases, but also simpler store types such as files, emails, etc. A database is a series of bytes managed by a DBMS, while a file is managed by a file system. Any database or file that is stored is called a data store.</p>
+                    <p>The most common data stores are <strong>SQL databases</strong>, <strong>XML-based repositories</strong>, and <strong>LDAP directories</strong>.</p>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3><span class="icon">&#9889;</span> How Injection Attacks Work</h3>
+                <div class="info-card">
+                    <p>Injection flaws allow attackers to relay malicious code through an application to another system. These attacks include calls to the OS via system calls, use of external programs via shell commands, and calls to backend databases via SQL.</p>
+                    <p>Any time an application uses an interpreter of any type, there is a danger of introducing an injection vulnerability. The web application functions as a discretionary access control to the data store, constructing queries based on the user's account and type.</p>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3><span class="icon">&#128274;</span> SQL Injection - Login Bypass</h3>
+                <p class="block-desc">Many applications use a database to validate login attempts with a simple query:</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>SQL - Original Query</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>SELECT * FROM users WHERE username = 'marcus' AND password = 'secret'</code></pre>
+                </div>
+
+
+                <p class="block-desc">An attacker who knows the admin username can bypass authentication:</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>SQL - Injection Payload (Username field)</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>admin'--</code></pre>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>SQL - Resulting Query</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>SELECT * FROM users WHERE username = 'admin'--' AND password = 'random-pass'
+-- The comment sequence (--) causes the password check to be ignored
+-- Effective query: SELECT * FROM users WHERE username = 'admin'</code></pre>
+                </div>
+
+                <div class="attack-demo">
+                    <h4>&#9888; Unknown Admin Username Attack</h4>
+                    <p>If the attacker doesn't know the admin username, they can log in as the first user in the database:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Payload: Username field</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>' OR 1=1--</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Resulting Query</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>SELECT * FROM users WHERE username = '' OR 1=1--' AND password = 'random'
+-- Returns ALL users. Application typically processes the first result (admin).</code></pre>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="content-block">
+                <h3><span class="icon">&#128161;</span> XML Injection (XXE)</h3>
+                <div class="info-card">
+                    <p>XML External Entity injection exploits standard XML parsing libraries that support entity references. Attackers can define external entities using the SYSTEM keyword to read local files or make network requests.</p>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>XXE - Reading Server Files</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>&lt;!DOCTYPE foo [ &lt;!ENTITY xxe SYSTEM "file:///windows/win.ini" &gt; ]&gt;
+&lt;Search&gt;&lt;SearchTerm&gt;&amp;xxe;&lt;/SearchTerm&gt;&lt;/Search&gt;</code></pre>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>XXE - Internal Network Scanning</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>&lt;!DOCTYPE foo [ &lt;!ENTITY xxe SYSTEM "http://192.168.1.1:25" &gt; ]&gt;
+&lt;Search&gt;&lt;SearchTerm&gt;&amp;xxe;&lt;/SearchTerm&gt;&lt;/Search&gt;
+&lt;!-- Can interact with internal network services unreachable from Internet --&gt;</code></pre>
+                </div>
+                <div class="warning-box">
+                    <strong>XXE Attack Capabilities:</strong>
+                    <ul>
+                        <li>Use application as proxy to retrieve internal content</li>
+                        <li>Exploit vulnerabilities on back-end web applications</li>
+                        <li>Port scanning on back-end systems</li>
+                        <li>Denial of service via infinite file stream (e.g., /dev/random)</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="content-block">
+                <h3><span class="icon">&#9881;</span> JavaScript Injection (SSJI)</h3>
+                <div class="info-card">
+                    <p>Server-Side JavaScript Injection occurs when applications use the <code>eval()</code> function to process user input. Unlike client-side XSS, SSJI provides direct server access without social engineering.</p>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Vulnerable Node.js Code</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>var http = require('http');
+http.createServer(function (request, response) {
+  if (request.method === 'POST') {
+    var data = '';
+    request.addListener('data', function(chunk) { data += chunk; });
+    request.addListener('end', function() {
+      var bankData = eval("(" + data + ")");  // VULNERABLE!
+      bankQuery(bankData.balance);
+    });
+  }
+});</code></pre>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>SSJI Payloads</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>// Read directory contents
+response.end(require('fs').readdirSync('.').toString())
+
+// Execute system commands
+require('child_process').spawn(filename);
+
+// Write/overwrite files
+require('fs').writeFileSync(path, content);</code></pre>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>SECURE Fix - Use JSON.parse()</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>var bankData = JSON.parse(data);  // Safe - cannot execute code
+bankQuery(bankData.balance);</code></pre>
+                </div>
+            </div>
+
+
+            <div class="content-block">
+                <h3><span class="icon">&#128279;</span> SQL Injection - Different Statement Types</h3>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="select-tab">SELECT</button>
+                    <button class="tab-btn" data-tab="insert-tab">INSERT</button>
+                    <button class="tab-btn" data-tab="update-tab">UPDATE</button>
+                    <button class="tab-btn" data-tab="delete-tab">DELETE</button>
+                </div>
+                <div class="tab-content active" id="select-tab">
+                    <p>Used to retrieve information. Entry point is usually the WHERE clause. The comment symbol can truncate the remainder of the query.</p>
+                    <div class="code-block">
+                        <div class="code-header"><span>SELECT Injection</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                        <pre><code>-- Search term: Wiley' OR 1=1--
+SELECT author,title,year FROM books WHERE publisher = 'Wiley' OR 1=1--' and published=1
+-- Returns ALL books, bypassing the published=1 filter</code></pre>
+                    </div>
+                </div>
+                <div class="tab-content" id="insert-tab">
+                    <p>Used to create new rows. Common in registration forms. Attacker must ensure correct column count and types.</p>
+                    <div class="code-block">
+                        <div class="code-header"><span>INSERT Injection</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                        <pre><code>-- Original: INSERT INTO users (username, password, ID, privs) VALUES ('input', 'pass', 2248, 1)
+-- Injecting into username field: hak', 'in9', 9999, 0)--
+-- Result: Creates admin account with ID=9999 and privs=0 (admin)</code></pre>
+                    </div>
+                </div>
+                <div class="tab-content" id="update-tab">
+                    <p>Used to modify existing data. Common in password change functions.</p>
+                    <div class="code-block">
+                        <div class="code-header"><span>UPDATE Injection</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                        <pre><code>-- Original: UPDATE users SET password='new' WHERE user = 'marcus' AND password = 'old'
+-- Injecting username: admin'--
+-- Result: Changes admin password without knowing the old one</code></pre>
+                    </div>
+                </div>
+                <div class="tab-content" id="delete-tab">
+                    <p>Used to delete rows. Subverting the WHERE clause can have catastrophic effects.</p>
+                    <div class="code-block">
+                        <div class="code-header"><span>DELETE Caution</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                        <pre><code>-- Modifying a DELETE WHERE clause can delete ALL rows
+-- Same caution as UPDATE - subverting WHERE is devastating
+-- Always use extreme caution with DELETE injection</code></pre>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="content-block reveal">
+                <h3><span class="icon">∪</span> UNION operator &amp; structural matching</h3>
+                <div class="split-cards">
+                    <article><span class="step">01</span><h4>Match column count</h4><p>UNION combines result sets only when each SELECT returns the same number of columns. In an authorized lab, testers commonly use <code>NULL</code> placeholders because NULL is compatible with many data types.</p></article>
+                    <article><span class="step">02</span><h4>Match data types</h4><p>Corresponding fields must be identical or implicitly convertible. A string placed where the original query expects a number produces a useful structural error.</p></article>
+                    <article><span class="step">03</span><h4>Locate display fields</h4><p>Once structure is understood, identify which returned string field is rendered by the application. That field explains how unintended data could become visible.</p></article>
+                </div>
+                <div class="code-block"><div class="code-header"><span>Conceptual UNION shape</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><code>SELECT author, title, year FROM books WHERE publisher = ?
+UNION SELECT NULL, 'lab-marker', NULL
+-- Same column count; a harmless marker reveals the displayed text field.</code></pre></div>
+            </div>
+
+            <div class="content-block reveal">
+                <h3><span class="icon">⌁</span> Database fingerprinting</h3>
+                <p class="block-desc">DBMS products share SQL fundamentals but differ in errors, functions, concatenation, metadata, and delay primitives. Fingerprinting matters because syntax is platform-specific.</p>
+                <div class="comparison-table" role="region" aria-label="Database fingerprint comparison" tabindex="0">
+                    <table><thead><tr><th>Signal</th><th>Oracle</th><th>SQL Server</th><th>MySQL</th></tr></thead>
+                    <tbody><tr><td>Error style</td><td><code>ORA-#####</code></td><td><code>Msg … Level …</code></td><td>MySQL syntax wording</td></tr>
+                    <tr><td>Concatenation</td><td><code>'ab'||'cd'</code></td><td><code>'ab'+'cd'</code></td><td><code>CONCAT('ab','cd')</code></td></tr>
+                    <tr><td>Version source</td><td><code>v$version</code></td><td><code>@@version</code></td><td><code>@@version</code></td></tr>
+                    <tr><td>Metadata</td><td><code>all_tab_columns</code></td><td colspan="2"><code>information_schema.columns</code></td></tr></tbody></table>
+                </div>
+                <div class="insight"><strong>Inference fingerprinting</strong><p>When errors are hidden, compare harmless expressions unique to each engine and observe whether the normal page changes. Technology-stack assumptions are only hints, never proof.</p></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- MODULE 2 -->
+    <section class="module-section alt" id="module2">
+        <div class="container">
+            <div class="module-header reveal"><span class="module-badge">Module 02</span><h2>Advanced SQL Injection</h2><p class="module-intro">From database metadata and second-order behavior to blind inference, time signals, and the security boundary between a DBMS and its host file system.</p></div>
+            <div class="topic-index reveal" aria-label="Module 2 chapters">
+                <span>01 Data extraction</span><span>02 Filters</span><span>03 Second order</span><span>04 Out of band</span><span>05 Blind SQLi</span><span>06 Time delays</span><span>07 File access</span>
+            </div>
+
+            <div class="content-block reveal">
+                <h3><span class="icon">⌗</span> Data extraction methodology</h3>
+                <div class="process-line">
+                    <div><b>1</b><span>Find query shape</span><small>Column count and compatible types</small></div>
+                    <div><b>2</b><span>Read metadata</span><small>Tables, columns, current schema</small></div>
+                    <div><b>3</b><span>Target carefully</span><small>Locate relevant fields, not every row</small></div>
+                    <div><b>4</b><span>Concatenate</span><small>Fit several values into one display field</small></div>
+                </div>
+                <div class="comparison-table" role="region" tabindex="0"><table><thead><tr><th>Platform</th><th>Metadata catalog</th><th>Concatenation concept</th></tr></thead><tbody>
+                    <tr><td>Oracle</td><td><code>all_tab_columns</code> / <code>user_tab_columns</code></td><td><code>table_name || ':' || column_name</code></td></tr>
+                    <tr><td>SQL Server</td><td><code>information_schema.columns</code></td><td><code>table_name + ':' + column_name</code></td></tr>
+                    <tr><td>MySQL</td><td><code>information_schema.columns</code></td><td><code>CONCAT(table_name, ':', column_name)</code></td></tr>
+                </tbody></table></div>
+                <p class="caption">The course's address-book example first determines five returned columns, identifies one text-compatible field, inventories metadata, then focuses on a users table. The repeatable lesson is the workflow—not any specific target.</p>
+            </div>
+
+
+            <div class="content-block reveal">
+                <h3><span class="icon">≠</span> Filters are not a primary defense</h3>
+                <div class="two-col">
+                    <div><h4>Why blacklists fail</h4><p>Blocking quotes, comments, spaces, or keywords does not fix query construction. Numeric contexts may need no quotes; balanced expressions may need no comment; case variants, encodings, whitespace, inline comments, character functions, and concatenation can change representation without changing meaning.</p></div>
+                    <div><h4>What to learn defensively</h4><p>Normalize input once, validate against an allowlist, and keep values separate from query structure with parameterized APIs. A filter can be a supporting control, never the trust boundary.</p></div>
+                </div>
+                <div class="chip-cloud"><span>mixed case</span><span>URL encoding</span><span>character codes</span><span>hex</span><span>inline comments</span><span>whitespace variants</span><span>equivalent expressions</span></div>
+            </div>
+
+            <div class="content-block reveal">
+                <h3><span class="icon">↻</span> Second-order injection</h3>
+                <div class="storyline"><div><b>A</b><p>Input arrives and is escaped before storage.</p></div><i></i><div><b>B</b><p>The stored value later appears trusted.</p></div><i></i><div><b>C</b><p>A second feature concatenates it into a new query.</p></div><i></i><div><b>D</b><p>The dormant structure is interpreted.</p></div></div>
+                <p class="caption">This flaw is hard to discover because submission and execution happen in different requests. Review every place stored data is later reused—profile display, password change, admin tools, batch jobs, exports, and integrations. Parameterize at every query boundary, including “internal” data.</p>
+            </div>
+
+            <div class="content-block reveal">
+                <h3><span class="icon">◌</span> When results are not returned</h3>
+                <div class="concept-grid">
+                    <article><h4>Out-of-band</h4><p>Historically, DBMS network features were abused to send query results through another channel. From a defense perspective, block unnecessary database egress and remove network-capable packages from low-privilege accounts.</p></article>
+                    <article><h4>Numeric channel</h4><p><code>SUBSTRING</code>/<code>SUBSTR</code> isolates a character and <code>ASCII</code> converts it to a number. An application that reveals only a numeric identifier can still become an unintended data channel.</p></article>
+                    <article><h4>Boolean channel</h4><p>True and false conditions produce different pages, row counts, login outcomes, errors, or status codes. Repeated questions can infer hidden values one character—or bit—at a time.</p></article>
+                    <article><h4>Timing channel</h4><p>A conditionally delayed response can signal true or false when content is identical. Delay mechanisms vary by DBMS, making timing both a fingerprint and a blind inference technique.</p></article>
+                </div>
+            </div>
+
+
+            <div class="content-block reveal">
+                <h3><span class="icon">◐</span> Blind and time-based inference</h3>
+                <div class="blind-visual"><div class="signal true"><span>TRUE</span><b>Normal response</b><small>Expected page, row, or login path</small></div><div class="pulse" aria-hidden="true"></div><div class="signal false"><span>FALSE</span><b>Changed response</b><small>Blank page, error, status, or measurable delay</small></div></div>
+                <p>Blind injection is present when attacker-controlled query logic changes an observable behavior even though query output is hidden. Boolean tests compare a known-true condition with a known-false condition. Conditional errors can provide the same signal. Time-based techniques replace page differences with response latency.</p>
+                <div class="comparison-table" role="region" tabindex="0"><table><thead><tr><th>Engine</th><th>Historical delay family</th><th>Defensive detection</th></tr></thead><tbody>
+                    <tr><td>MySQL</td><td><code>SLEEP</code>, processor-heavy expressions</td><td>Repeated latency spikes tied to input shape</td></tr>
+                    <tr><td>SQL Server</td><td><code>WAITFOR DELAY/TIME</code></td><td>WAITFOR in query telemetry; slow request clusters</td></tr>
+                    <tr><td>Oracle</td><td>Network timeout / heavy-query techniques</td><td>Unexpected outbound attempts and long-running statements</td></tr>
+                </tbody></table></div>
+                <div class="insight"><strong>Efficiency insight</strong><p>Character-by-character testing can be reduced using ranges or bitwise questions. For defenders, this means low-volume, repetitive requests—not just obvious payloads—deserve correlation.</p></div>
+            </div>
+
+            <div class="content-block reveal">
+                <h3><span class="icon">▤</span> From database access to file-system risk</h3>
+                <p class="block-desc">The course compares MySQL file functions and SQL Server bulk/extended capabilities. Whether read or write access exists depends on engine, operating system, service identity, feature configuration, query batching, target path, and database privileges.</p>
+                <div class="risk-ladder"><div><span>01</span><b>DB data only</b><small>Restricted account and no file APIs</small></div><div><span>02</span><b>Read files</b><small>File/bulk privileges expose host data</small></div><div><span>03</span><b>Write files</b><small>Output features cross the boundary</small></div><div><span>04</span><b>OS commands</b><small>Dangerous extensions magnify impact</small></div></div>
+                <div class="defense-banner"><b>Break the chain</b><span>Disable unused file/network/command features · run the DBMS as a restricted OS account · separate read and write identities · constrain egress · monitor bulk operations · never grant application accounts server-control privileges.</span></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- MODULE 3 -->
+    <section class="module-section" id="module3">
+        <div class="container">
+            <div class="module-header reveal"><span class="module-badge">Module 03</span><h2>Encoding, Automation, XPath &amp; LDAP</h2><p class="module-intro">How representation changes affect weak filters, how authorized testing tools assist analysis, and how injection concepts reappear in XML and directory query languages.</p></div>
+            <div class="content-block reveal">
+                <h3><span class="icon">⌘</span> Encoding &amp; evasion taxonomy</h3>
+                <div class="encoding-grid">
+                    <article><b>%</b><h4>URL encoding</h4><p>Percent plus a hexadecimal byte. Common examples include space, percent, newline, and null representations.</p></article>
+                    <article><b>A</b><h4>Character functions</h4><p>Database character functions can construct text from numeric character codes without literal quotes.</p></article>
+                    <article><b>0x</b><h4>Hex encoding</h4><p>Some engines accept hexadecimal text directly or through conversion functions.</p></article>
+                    <article><b>/**/</b><h4>Comments &amp; whitespace</h4><p>Inline comments, tabs, and newlines may separate tokens or change how naïve filters see a statement.</p></article>
+                    <article><b>∥</b><h4>Concatenation</h4><p>Breaking tokens or strings into pieces can preserve interpreter meaning while changing surface text.</p></article>
+                    <article><b>≡</b><h4>Equivalent logic</h4><p>Many expressions are logically equivalent. Signature matching cannot enumerate every valid form.</p></article>
+                </div>
+                <div class="defense-banner"><b>Canonicalize first</b><span>Decode and normalize into one predictable representation before validation. Reject ambiguous or repeatedly encoded input. Then parameterize—the filter is not the fix.</span></div>
+            </div>
+
+            <div class="content-block reveal">
+                <h3><span class="icon">⚙</span> Automation in an authorized lab</h3>
+                <div class="tool-cards">
+                    <article><span class="tool-state">OPEN SOURCE</span><h4>sqlmap</h4><p>Automates detection, DBMS fingerprinting, data enumeration, and supported post-exploitation checks. Its large switch set can target a URL and session cookie, report the current DB/user, enumerate databases, tables, and columns, and selectively export authorized test data.</p><small>Best used after understanding the parameter and with a test scope. Results can be wrong or destructive; keep snapshots and backups.</small></article>
+                    <article><span class="tool-state">SQL SERVER FOCUSED</span><h4>SQLninja</h4><p>A historic SQL Server-oriented tool with test, fingerprinting, escalation, upload, shell, and tunneling modes. The course emphasizes that automation is not a magic vulnerability finder and often needs manual context.</p><small>Modern defensive lesson: alert on database-to-OS transitions, unusual delay statements, outbound channels, and extended procedure use.</small></article>
+                </div>
+            </div>
+
+
+            <div class="content-block reveal">
+                <h3><span class="icon">/</span> XPath injection</h3>
+                <div class="language-map"><div><span>XML document</span><code>&lt;addressBook&gt;…&lt;/addressBook&gt;</code></div><b>→</b><div><span>XPath selection</span><code>//address[surname/text()='Dawes']</code></div><b>→</b><div><span>Application result</span><code>matched nodes</code></div></div>
+                <p>XPath addresses nodes in XML and is case-sensitive. If an application concatenates credentials or search input into an XPath expression, crafted Boolean logic can change which nodes match. Unlike SQL, XPath has no universal comment token, so expressions are often balanced with Boolean structure.</p>
+                <div class="two-col"><div><h4>Booleanization</h4><p>Compare known-true and known-false predicates. If application behavior differs, functions such as <code>substring()</code> and <code>string-length()</code> can test one property at a time.</p></div><div><h4>XML crawling</h4><p><code>count()</code>, node positions, child-node selection, and string length can map an unknown document. The request volume is high, which makes automation and anomaly detection relevant.</p></div></div>
+            </div>
+
+            <div class="content-block reveal">
+                <h3><span class="icon">⌂</span> LDAP injection</h3>
+                <p class="block-desc">LDAP powers directories such as Active Directory and OpenLDAP. Filters combine simple matches, disjunctions (any condition), conjunctions (all conditions), and wildcards. Unsafe concatenation may broaden a directory search or weaken application access control.</p>
+                <div class="filter-stack"><div><span>Simple</span><code>(username=thomas)</code></div><div><span>OR / disjunctive</span><code>(|(cn=term)(sn=term))</code></div><div><span>AND / conjunctive</span><code>(&amp;(username=thomas)(password=value))</code></div><div><span>Risk tokens</span><code>( ) ; , * | &amp; = NUL</code></div></div>
+                <p class="caption">LDAP exploitation is often blind: requested attributes are usually hard-coded and errors are sparse. Historic issues include wildcard broadening, batched filters, and NUL truncation. Defend with RFC-appropriate escaping APIs, allowlisted attribute values, fixed filter structure, and least-privileged bind accounts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULE 4 -->
+    <section class="module-section alt" id="module4">
+        <div class="container">
+            <div class="module-header reveal"><span class="module-badge">Module 04</span><h2>Secure Every Data Store</h2><p class="module-intro">NoSQL query safety, positive validation, contextual encoding, parameterized APIs, least privilege, canonicalization, and careful handling of sensitive data.</p></div>
+
+
+            <div class="content-block reveal">
+                <h3><span class="icon">{ }</span> NoSQL injection</h3>
+                <p>NoSQL is an umbrella for stores using key/value, document, graph, XPath-like, or programming-language query models. Different engines have different security semantics; “not SQL” does not mean “not injectable.”</p>
+                <div class="code-compare"><div><span>Unsafe object construction</span><pre><code>db.users.find({
+  username: req.body.username,
+  password: req.body.password
+});</code></pre></div><div class="safe"><span>Validate shape and type</span><pre><code>const { username, password } = req.body;
+if (typeof username !== 'string' ||
+    typeof password !== 'string') reject();
+// Use a restricted, typed query API.</code></pre></div></div>
+                <p class="caption">If deserialized fields can be objects, attacker-controlled query operators may replace expected strings. Form parsers can also turn bracket notation into nested objects. Reject unknown keys, enforce primitive types, disable server-side scripting, and never pass request objects directly to a datastore API.</p>
+            </div>
+
+            <div class="content-block reveal">
+                <h3><span class="icon">✓</span> The secure query pipeline</h3>
+                <div class="secure-pipeline"><div><b>01</b><span>Canonicalize</span><small>Decode once; normalize Unicode; reject ambiguous forms</small></div><i>→</i><div><b>02</b><span>Allowlist</span><small>Type, length, range, format, known values</small></div><i>→</i><div><b>03</b><span>Parameterize</span><small>Bind every value; keep structure fixed</small></div><i>→</i><div><b>04</b><span>Authorize</span><small>Check object and action, not just query validity</small></div><i>→</i><div><b>05</b><span>Encode</span><small>Apply context-specific output handling</small></div></div>
+                <div class="two-col"><div><h4>Positive vs. negative validation</h4><p>Allowlisting accepts only known-good type, size, range, format, and content. Blacklisting rejects known-bad patterns and is inherently incomplete. Use it only as an additional signal, never alone.</p></div><div><h4>Output encoding</h4><p>Encoding is context-specific: database values, HTML, URLs, logs, and command arguments have different rules. Escaping dynamic SQL is error-prone; prefer prepared statements.</p></div></div>
+            </div>
+
+            <div class="content-block reveal">
+                <h3><span class="icon">?</span> Prepared statements: structure first, values second</h3>
+                <div class="code-compare"><div><span>Vulnerable concatenation</span><pre><code>const sql = "SELECT * FROM users " +
+  "WHERE username='" + username + "' " +
+  "AND password='" + password + "'";</code></pre></div><div class="safe"><span>Parameterized query</span><pre><code>const sql = `SELECT * FROM users
+             WHERE username = ?
+             AND password_hash = ?`;
+connection.execute(sql, [username, hash]);</code></pre></div></div>
+                <div class="insight"><strong>Important limits</strong><p>Bind every value in every query, including second-order data. Placeholders generally cannot represent table names, column names, sort direction, or other structural keywords—map those choices from fixed allowlists.</p></div>
+            </div>
+
+
+            <div class="content-block reveal">
+                <h3><span class="icon">◇</span> Least privilege &amp; sensitive data</h3>
+                <div class="control-matrix"><article><b>Separate identities</b><p>Use different database users for different applications and functions. A read-only screen should not inherit signup, write, DDL, or administrator rights.</p></article><article><b>Views &amp; procedures</b><p>Expose only required rows and fields. Where appropriate, grant execute on reviewed procedures rather than direct table access.</p></article><article><b>Restrict the OS account</b><p>The DBMS service must not run as root/system. Restrict file paths, network egress, and dangerous extensions.</p></article><article><b>Passwords</b><p>Store unique salted, slow password hashes—not reversible passwords. Password reset replaces a credential; it never emails the old one.</p></article><article><b>Financial data</b><p>Minimize storage, follow PCI DSS where applicable, use approved authenticated encryption, and keep keys outside the database.</p></article><article><b>Retention</b><p>Archive or delete unneeded sensitive data. Data that no longer exists cannot be taken in a future breach.</p></article></div>
+            </div>
+
+            <div class="content-block reveal">
+                <h3><span class="icon">◎</span> LDAP, XPath &amp; NoSQL hardening</h3>
+                <div class="comparison-table" role="region" tabindex="0"><table><thead><tr><th>Store</th><th>Primary controls</th><th>Reject / contain</th></tr></thead><tbody><tr><td>LDAP</td><td>LDAP escaping library, fixed filter shape, least-privileged bind</td><td>Unescaped filter metacharacters and NUL</td></tr><tr><td>XPath/XML</td><td>Variable binding where supported, strict schema, safe XML parser</td><td>Dynamic path fragments, DTDs and external entities</td></tr><tr><td>NoSQL</td><td>Schema validation, primitive types, operator allowlist, auth middleware</td><td>Unknown keys, request objects, server-side scripts</td></tr></tbody></table></div>
+                <div class="closing-quote"><span>THE CORE LESSON</span><blockquote>Injection is a boundary failure: untrusted data is allowed to become interpreter structure. Preserve that boundary everywhere.</blockquote></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SAFE INTERACTIVE LAB -->
+    <section class="lab-section" id="lab">
+        <div class="container lab-shell reveal">
+            <div class="lab-copy"><p class="eyebrow">Browser-only safe simulator</p><h2>See the boundary break—then fix it.</h2><p>This demo never connects to a database. It visualizes how string concatenation changes query structure while binding preserves data as a value.</p><div class="lab-presets"><button data-value="O'Reilly">Valid apostrophe</button><button data-value="Ada">Normal value</button><button data-value="admin'--">Injection-shaped input</button></div></div>
+            <div class="simulator"><label for="labInput">Username value</label><div class="input-row"><input id="labInput" value="O'Reilly" maxlength="50"><button id="runLab">Analyze</button></div><div class="query-result vulnerable"><span>CONCATENATED</span><code id="unsafeQuery"></code><p id="unsafeNote"></p></div><div class="query-result safe"><span>PARAMETERIZED</span><code>SELECT * FROM users WHERE username = ?</code><p><b>Bound value:</b> <output id="boundValue"></output></p></div></div>
+        </div>
+    </section>
+
+    <section class="reading-section" id="reading">
+        <div class="container reading-grid">
+            <div class="reading-intro reveal">
+                <p class="eyebrow">Conclusion // page 93</p>
+                <h2>Understand systems,<br>not signatures.</h2>
+                <p>The book closes with a durable lesson: advanced attacks may be slow and subtle, and injection is only one family of interpreter-boundary failures. Secure engineering requires understanding how the whole data flow works, researching the exact datastore in use, and reviewing assumptions that known-vulnerability scans cannot test.</p>
+                <div class="scope-note dark"><strong>Editorial note.</strong> Tool versions, links, default configurations, password-hashing examples, and platform behavior in this historical workshop may now be outdated. Use maintained documentation and current security standards when implementing defenses.</div>
+            </div>
+            <div class="reading-list reveal">
+                <p class="micro-label">Reading named in the book</p>
+                <article><span>01</span><div><h3>The Web Application Hacker's Handbook</h3><p>Finding and Exploiting Security Flaws, second edition. Cited by the advanced SQL and datastore chapters.</p></div></article>
+                <article><span>02</span><div><h3>OWASP injection guidance</h3><p>SQL injection, blind SQL injection, LDAP injection, and XPath injection references appear throughout the support material.</p></div></article>
+                <article><span>03</span><div><h3>SQL Injection Attacks and Defenses</h3><p>Listed in the final reading materials alongside specialist time-based and operating-system-control research.</p></div></article>
+                <article><span>04</span><div><h3>Pre-course foundations</h3><p>Introductory SQL, web application, and SQL injection reading from Wikipedia, W3Schools, Codecademy, SQLCourse, and OWASP.</p></div></article>
+                <p class="legacy-note">These entries preserve the book's bibliography at a title/category level. Consult current editions and maintained vendor or OWASP documentation before applying technical guidance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="field-checklist" id="checklist">
+        <div class="container"><div class="section-heading reveal"><p class="eyebrow">Operational takeaway</p><h2>Defender's pre-release checklist</h2></div><div class="check-grid reveal">
+            <label><input type="checkbox"><span>All datastore values are bound, never concatenated</span></label><label><input type="checkbox"><span>Structural choices map to fixed allowlists</span></label><label><input type="checkbox"><span>XML parsers disable DTDs and external entities</span></label><label><input type="checkbox"><span>LDAP values use a dedicated escaping API</span></label><label><input type="checkbox"><span>NoSQL request bodies have strict schemas and types</span></label><label><input type="checkbox"><span>Database accounts follow least privilege</span></label><label><input type="checkbox"><span>DBMS file, OS, and outbound network features are restricted</span></label><label><input type="checkbox"><span>Secrets are hashed/encrypted and retention is minimized</span></label><label><input type="checkbox"><span>Error responses reveal no database details</span></label><label><input type="checkbox"><span>Second-order data flows are covered by code review</span></label>
+        </div><div class="progress-row"><span id="checkProgress">0 / 10 complete</span><div><i id="checkBar"></i></div></div></div>
+    </section>
+
+    <footer><div class="container footer-grid"><div><span class="brand-text">SQLi<span class="accent">Lab</span></span><p>An independent interactive adaptation of the complete 93-page Hakin9 workshop material. For education and explicitly authorized testing only.</p></div><div><span>Course map</span><a href="#book-map">93-page book map</a><a href="#module1">Foundations</a><a href="#module2">Advanced SQLi</a><a href="#module3">XPath &amp; LDAP</a><a href="#module4">Defense</a><a href="#reading">Conclusion &amp; reading</a></div><div><span>Source material</span><p>Web Application Hacking: Advanced SQL Injection and Data Store Attacks</p><small>Thomas Serminis · Hakin9 Workshops · Vol. 12, No. 03</small></div></div><div class="footer-line"><span>NO DATABASE. NO NETWORK CALLS. SAFE SIMULATION.</span><a href="#home">Back to top ↑</a></div></footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard</div>
+    <script src="js/main.js"></script>
+</body>
+</html>
