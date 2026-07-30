@@ -1,0 +1,275 @@
+/* ============================================================
+   CINEMATIC MOTION LAYER
+   Full-page ambient network, section telemetry, chapter traces,
+   active-panel borders, counters, and the 93-page audit path.
+   All motion is ornamental and switches off in Calm mode.
+   ============================================================ */
+
+.ambient-canvas {
+  position: fixed;
+  z-index: 8;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .38;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  mask-image: radial-gradient(ellipse at center, black, transparent 84%);
+}
+
+.cinematic-ready main > section,
+.cinematic-ready footer { isolation: isolate; }
+
+/* Live section telemetry floats beside the long course chapters. */
+.section-signal {
+  position: absolute;
+  z-index: 4;
+  top: 118px;
+  left: 18px;
+  width: 62px;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  color: var(--faint);
+  font: 600 .49rem var(--mono);
+  letter-spacing: .12em;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: .35;
+  transition: opacity .5s ease, color .5s ease;
+}
+
+.section-signal::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: var(--deep);
+  box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.section-signal::after {
+  content: '';
+  width: 1px;
+  height: 52px;
+  background: linear-gradient(currentColor, transparent);
+  transform-origin: top;
+  transform: scaleY(var(--section-progress, .2));
+  transition: transform .18s linear;
+}
+
+.section-live > .section-signal {
+  color: var(--accent2);
+  opacity: 1;
+}
+
+.section-live > .section-signal::before { animation: signalBeacon 2.6s ease-in-out infinite; }
+
+/* A progress tracer lives beside each of the 26 field chapters. */
+.chapter-spine {
+  position: absolute;
+  left: -28px;
+  top: 10px;
+  bottom: 0;
+  width: 1px;
+  overflow: visible;
+  background: color-mix(in srgb, var(--accent2) 9%, transparent);
+  pointer-events: none;
+}
+
+.chapter-spine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--accent2), var(--accent));
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent2) 42%, transparent);
+  transform: scaleY(var(--chapter-progress, 0));
+  transform-origin: top;
+  transition: transform .16s linear;
+}
+
+.chapter-spine i {
+  position: absolute;
+  z-index: 1;
+  top: calc(var(--chapter-progress, 0) * 100% - 4px);
+  left: -3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 11px var(--accent);
+  opacity: var(--chapter-progress, 0);
+  transition: top .16s linear, opacity .2s;
+}
+
+.cinematic-ready .content-block {
+  transition: transform .65s cubic-bezier(.2,.8,.2,1), filter .65s ease;
+}
+
+.cinematic-ready .content-block.chapter-live { transform: translateX(4px); }
+.cinematic-ready .content-block.chapter-live > h3 .icon { animation: chapterPulse 2.8s ease-in-out infinite; }
+.cinematic-ready .content-block.chapter-live > h3 { text-shadow: 0 0 28px color-mix(in srgb, var(--accent2) 12%, transparent); }
+
+/* Major active panels gain a slow spectral border instead of a static box. */
+.audit-interface,
+.quiz-console,
+.simulator,
+.readiness-panel {
+  background-size: 100% 100%, 240% 240%;
+}
+
+.section-live .audit-interface,
+.section-live .quiz-console,
+.section-live .simulator,
+.section-live .readiness-panel {
+  animation: panelChromatic 10s ease-in-out infinite;
+}
+
+.module-header h2,
+.audit-heading h2,
+.checkpoint-intro h2,
+.lab-copy h2,
+.mission-heading h2 {
+  background-size: 220% 100%;
+}
+
+.section-live .module-header h2,
+.section-live .audit-heading h2,
+.section-live .checkpoint-intro h2,
+.section-live .lab-copy h2,
+.section-live .mission-heading h2 {
+  animation: headingCurrent 8s ease-in-out infinite;
+}
+
+/* Animated audit constellation. JS sets --twinkle-delay uniquely. */
+.page-node { animation: nodeBreathe 4.8s ease-in-out var(--twinkle-delay, 0s) infinite; }
+.page-node.selected { animation: selectedNode 1.9s ease-in-out infinite; }
+
+.audit-metrics strong.counter-live { animation: counterFlash .7s ease-out; }
+
+/* The module topic chips behave like a moving signal packet. */
+.section-live .topic-index span,
+.section-live .module-tags span {
+  animation: chipSignal 5.4s ease-in-out calc(var(--chip-index, 0) * 180ms) infinite;
+}
+
+/* Subtle sweep across long tables and comparison surfaces while active. */
+.comparison-table,
+.process-line,
+.risk-ladder,
+.validation-spectrum,
+.binding-grid,
+.canonical-flow,
+.trust-flow { position: relative; overflow: hidden; }
+
+.section-live :is(.comparison-table,.process-line,.risk-ladder,.validation-spectrum,.binding-grid,.canonical-flow,.trust-flow)::after {
+  content: '';
+  position: absolute;
+  z-index: 4;
+  inset: 0 auto 0 -35%;
+  width: 28%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent2) 6%, transparent), transparent);
+  transform: skewX(-18deg);
+  animation: surfaceSweep 8.5s ease-in-out infinite;
+}
+
+/* Live metric bars get a traveling highlight. */
+.module-telemetry i,
+.progress-row > div,
+.reading-progress { overflow: hidden; }
+.module-telemetry i span,
+.progress-row i,
+.reading-progress i { position: relative; }
+.module-telemetry i span::after,
+.progress-row i::after,
+.reading-progress i::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent);
+  transform: translateX(-110%);
+  animation: metricSweep 3.6s ease-in-out infinite;
+}
+
+/* Scroll velocity is exposed by JS as --drift. */
+.matrix-bg { transform: translate3d(0, calc(var(--drift, 0) * 1px), 0); transition: transform .18s linear; }
+
+@keyframes signalBeacon {
+  0%, 100% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent2) 8%, transparent), 0 0 5px var(--accent2); transform: scale(.9); }
+  50% { box-shadow: 0 0 0 11px transparent, 0 0 18px var(--accent2); transform: scale(1.15); }
+}
+
+@keyframes chapterPulse {
+  0%, 100% { box-shadow: inset 0 0 0 transparent, 0 0 0 transparent; }
+  50% { box-shadow: inset 0 0 18px color-mix(in srgb, var(--accent2) 8%, transparent), 0 0 18px color-mix(in srgb, var(--accent2) 13%, transparent); }
+}
+
+@keyframes panelChromatic {
+  0%, 100% { border-color: var(--line2); box-shadow: 0 0 0 transparent; }
+  50% { border-color: color-mix(in srgb, var(--accent2) 65%, transparent); box-shadow: 0 0 55px color-mix(in srgb, var(--accent2) 5%, transparent); }
+}
+
+@keyframes headingCurrent { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+@keyframes nodeBreathe {
+  0%, 100% { opacity: .62; }
+  45% { opacity: 1; border-color: color-mix(in srgb, var(--accent2) 34%, transparent); }
+}
+
+@keyframes selectedNode {
+  0%, 100% { box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 34%, transparent); }
+  50% { box-shadow: 0 0 28px color-mix(in srgb, var(--accent) 60%, transparent); }
+}
+
+@keyframes counterFlash {
+  0% { filter: blur(5px); transform: translateY(8px); opacity: .25; }
+  100% { filter: none; transform: none; opacity: 1; }
+}
+
+@keyframes chipSignal {
+  0%, 78%, 100% { border-color: var(--line); color: var(--faint); }
+  86% { border-color: var(--accent2); color: var(--accent2); box-shadow: 0 0 12px var(--halo); }
+}
+
+@keyframes surfaceSweep {
+  0%, 25% { left: -35%; opacity: 0; }
+  38% { opacity: 1; }
+  68%, 100% { left: 118%; opacity: 0; }
+}
+
+@keyframes metricSweep {
+  0%, 50% { transform: translateX(-110%); }
+  80%, 100% { transform: translateX(110%); }
+}
+
+@media (max-width: 1280px) {
+  .section-signal { display: none; }
+  .chapter-spine { left: -16px; }
+}
+
+@media (max-width: 950px) {
+  .ambient-canvas { display: none; }
+  .chapter-spine { display: none; }
+  .cinematic-ready .content-block.chapter-live { transform: none; }
+}
+
+html[data-motion="calm"] .ambient-canvas,
+html[data-motion="calm"] .section-signal,
+html[data-motion="calm"] .chapter-spine { display: none; }
+
+html[data-motion="calm"] :is(.page-node,.module-header h2,.audit-heading h2,.checkpoint-intro h2,.lab-copy h2,.mission-heading h2,.topic-index span,.module-tags span,.content-block.chapter-live > h3 .icon,.audit-interface,.quiz-console,.simulator,.readiness-panel),
+html[data-motion="calm"] :is(.comparison-table,.process-line,.risk-ladder,.validation-spectrum,.binding-grid,.canonical-flow,.trust-flow)::after,
+html[data-motion="calm"] :is(.module-telemetry i span,.progress-row i,.reading-progress i)::after { animation: none !important; }
+
+html[data-motion="calm"] .cinematic-ready .content-block { transform: none; transition: none; }
+html[data-motion="calm"] .matrix-bg { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-canvas, .section-signal, .chapter-spine { display: none; }
+  .cinematic-ready * { animation-duration: 0s !important; animation-iteration-count: 1 !important; }
+  .cinematic-ready .content-block { transform: none; transition: none; }
+  .matrix-bg { transform: none; transition: none; }
+}

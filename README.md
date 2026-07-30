@@ -9,8 +9,8 @@ SQLi Lab transforms the supplied 93-page Hakin9 workshop into a searchable, inte
 
 ## Highlights
 
-- Complete page map for the supplied pages 9–93
-- Four modules and 23 trackable field chapters
+- Auditable page ledger for every supplied page from 1 through 93
+- Four modules and 26 trackable field chapters
 - SQL, XML/XXE, JavaScript, XPath, LDAP, and NoSQL coverage
 - Blind, second-order, time-based, encoding, automation, and file-boundary concepts
 - Parameterization, canonicalization, least privilege, validation, and sensitive-data defenses
@@ -22,6 +22,8 @@ SQLi Lab transforms the supplied 93-page Hakin9 workshop into a searchable, inte
 - Downloadable local progress record
 - Four switchable palettes and a cinematic/calm motion control
 - Ambient query-stream hero canvas, pointer light, and pointer-reactive card depth
+- Theme-aware full-page particle lattice and animated 93-page coverage path
+- Scroll-reactive section telemetry, chapter progress spines, surface sweeps, and metric tracers
 - Font-independent iconography drawn in CSS instead of symbol glyphs
 - Responsive, accessible, reduced-motion-aware interface
 - Zero third-party runtime dependencies and no external asset requests
@@ -63,6 +65,12 @@ PORT=4173 npm start
 
 ## Learning experience
 
+### Source audit
+
+The source audit makes the completeness claim inspectable rather than decorative. It divides the supplied book into 39 non-overlapping ranges, assigns every page from 1 through 93 exactly once, and links each range to its adaptation in the course. A 93-node interactive constellation, section filters, source-page badges on lessons, and the full coverage ledger expose the mapping directly in the interface.
+
+Coverage means every supplied page is accounted for by an original summary, source note, or defensive lesson. It does not mean the copyrighted publication is reproduced verbatim. Historical offensive procedures are summarized where exact reproduction would add operational risk, and obsolete defaults or APIs are not presented as current guidance.
+
 ### Mission Control
 
 Mission Control converts the field guide into a self-paced learning record:
@@ -98,6 +106,7 @@ The simulator visualizes the difference between string concatenation and value b
 
 | Section | Supplied pages | Coverage |
 | --- | ---: | --- |
+| Publication context | 1–8 | Cover, publication/legal note, reader note, contents, course outcomes, and instructor profile |
 | Pre-course | 9–13 | Web applications, SQL foundations, data stores, isolated DVWA lab guidance |
 | Module 1 | 14–33 | SQL and data stores, injection types, statement contexts, `UNION`, fingerprinting |
 | Module 2 | 34–55 | Extraction, filters, second order, blind and time-based behavior, file boundaries |
@@ -118,7 +127,7 @@ The palette control in the navigation bar switches the entire interface between 
 
 The same panel toggles ambient motion:
 
-- **Cinematic** enables the hero query-stream canvas, pointer light, card tilt, parallax, and heading decode.
+- **Cinematic** enables both ambient canvases, the animated source path, pointer light, card tilt, parallax, heading decode, active-section telemetry, chapter progress spines, surface sweeps, and metric tracers.
 - **Calm** disables all ambient motion while keeping every piece of content and interaction intact.
 
 The selected palette and motion mode persist in browser storage and are applied before first paint, so the page never flashes a different theme. When the operating system reports `prefers-reduced-motion: reduce`, calm mode is selected automatically.
@@ -133,6 +142,7 @@ The selected palette and motion mode persist in browser storage and are applied 
 | Navigate search results | `Arrow Up` / `Arrow Down` |
 | Open selected result | `Enter` |
 | Close search | `Esc` |
+| Move between source page nodes | `Arrow keys`; `Home` / `End` for first / last visible page |
 | Move between SQL statement tabs | `Arrow Left` / `Arrow Right` |
 | Jump to first or last statement tab | `Home` / `End` |
 
@@ -163,11 +173,15 @@ Mission Control reports whether storage is persistent for the current origin. If
 │   ├── style.css         # Base design system and responsive layout
 │   ├── animations.css    # Reveal, typing, and reduced-motion rules
 │   ├── upgrade.css       # Immersive UI, Mission Control, and checkpoint
-│   └── atelier.css       # Palette engine, depth layers, and drawn iconography
+│   ├── atelier.css       # Palette engine, depth layers, and drawn iconography
+│   ├── audit.css         # 93-page ledger, source constellation, and added lessons
+│   └── cinematic.css     # Full-page motion, chapter traces, and live section effects
 └── js/
     ├── main.js           # Navigation, search, simulator, tabs, and checklist
     ├── learning.js       # Completion, bookmarks, readiness, quiz, and export
-    └── atelier.js        # Theme engine, ambient canvas, tilt, and decode effects
+    ├── atelier.js        # Theme engine, hero canvas, tilt, and decode effects
+    ├── coverage.js       # Machine-checkable page map and source-audit interface
+    └── cinematic.js      # Particle lattice, audit tracer, and scroll telemetry
 ```
 
 The project intentionally uses plain HTML, CSS, and JavaScript. There is no bundler, framework, runtime package, database, or remote API.
@@ -186,12 +200,14 @@ Useful verification commands:
 ```bash
 node --check js/main.js
 node --check js/learning.js
+node --check js/coverage.js
+node --check js/cinematic.js
 node --check serve.js
 ```
 
 A practical browser review should confirm:
 
-- All four modules and five page ranges are present
+- All four modules and all 39 source ranges accounting for pages 1–93 are present
 - No horizontal overflow at desktop and mobile widths
 - Search, tabs, copy controls, simulator, bookmarks, and checklist work
 - Completion and quiz state survive a reload on the same origin

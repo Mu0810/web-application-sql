@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/upgrade.css">
     <link rel="stylesheet" href="css/atelier.css">
+    <link rel="stylesheet" href="css/audit.css">
+    <link rel="stylesheet" href="css/cinematic.css">
     <script>
         // Apply the saved palette before first paint so the page never flashes a different theme.
         try {
@@ -172,7 +174,7 @@
                     <a id="nextChapterLink" href="#module1">Open first chapter <span aria-hidden="true">→</span></a>
                 </div>
                 <div class="mission-metrics">
-                    <article><span>CHAPTERS</span><strong id="chapterMetric">0 / 23</strong><small>Manually completed</small></article>
+                    <article><span>CHAPTERS</span><strong id="chapterMetric">0 / 26</strong><small>Manually completed</small></article>
                     <article><span>CHECKPOINT</span><strong id="quizMetric">0 / 12</strong><small>Best defensive score</small></article>
                     <article><span>BOOKMARKS</span><strong id="bookmarkMetric">0</strong><small>Saved for review</small></article>
                     <article><span>MODULES</span><strong id="moduleMetric">0 / 4</strong><small>Visited in this browser</small></article>
@@ -250,7 +252,7 @@
         </div>
     </section>
 
-    <section class="lab-setup">
+    <section class="lab-setup" id="lab-setup">
         <div class="container setup-strip reveal">
             <div><p class="micro-label">Optional isolated lab</p><h3>VirtualBox → Linux → XAMPP → DVWA</h3><p class="setup-requirement">Requirement: any desktop OS capable of running a local virtual machine.</p></div>
             <ol><li>Create a VM, select the guest OS, allocate RAM, and create a virtual disk.</li><li>Install a Linux guest, then install and start XAMPP.</li><li>Place DVWA under the local web root and browse only to the loopback/local VM address.</li><li>Configure DVWA's local database connection, then create its training tables.</li></ol>
@@ -261,18 +263,55 @@
     <section class="book-map" id="book-map">
         <div class="container">
             <div class="section-heading reveal">
-                <p class="eyebrow">Complete-book coverage // pages 9–93</p>
-                <h2>Every chapter, mapped.</h2>
-                <p class="section-desc">The supplied workshop contains front matter plus four modules. This site condenses every chapter into a scannable, defensive-first learning path.</p>
+                <p class="eyebrow">Audited source coverage // pages 1–93</p>
+                <h2>Every source page, accounted for.</h2>
+                <p class="section-desc">The supplied workshop contains publication context, front matter, five course sections, and references. This site maps every page to a concise, defensive-first lesson or source note without reproducing the publication verbatim.</p>
             </div>
             <div class="book-map-grid reveal">
-                <a class="book-range pre" href="#modules"><span>09–13</span><div><small>Pre-course</small><h3>Web applications &amp; SQL</h3><p>Suggested reading · data stores · optional VirtualBox, Linux, XAMPP, and DVWA laboratory</p></div></a>
+                <a class="book-range front" href="#source-audit"><span>01–08</span><div><small>Publication context</small><h3>Source, scope &amp; course profile</h3><p>Cover · publication team and legal note · reader note · contents · course outcomes · instructor profile</p></div></a>
+                <a class="book-range pre" href="#course-brief-title"><span>09–13</span><div><small>Pre-course</small><h3>Web applications &amp; SQL</h3><p>Suggested reading · data stores · optional VirtualBox, Linux, XAMPP, and DVWA laboratory</p></div></a>
                 <a class="book-range" href="#module1"><span>14–33</span><div><small>Module 01</small><h3>Foundations</h3><p>SQL and data stores · procedural differences · data-store, XML, JavaScript, and SQL injection · statement contexts · UNION · fingerprinting</p></div></a>
                 <a class="book-range" href="#module2"><span>34–55</span><div><small>Module 02</small><h3>Advanced SQL</h3><p>Metadata extraction · filters · second order · out-of-band and numeric channels · blind and time-based inference · file-system boundaries</p></div></a>
                 <a class="book-range" href="#module3"><span>56–74</span><div><small>Module 03</small><h3>Beyond SQL</h3><p>URL, character, and hex encoding · comments, null bytes, whitespace, and concatenation · sqlmap · SQLninja · XPath · blind XPath · LDAP</p></div></a>
                 <a class="book-range" href="#module4"><span>75–93</span><div><small>Module 04</small><h3>Security measures</h3><p>NoSQL · validation · output encoding · prepared statements · least privilege · canonicalization · sensitive data · LDAP, XPath, and NoSQL hardening</p></div></a>
             </div>
-            <div class="coverage-meter reveal"><div><span>93 / 93 pages mapped</span><strong>100%</strong></div><i></i><p>The ebook notes that original course videos and selected exercises are not included in the publication; this adaptation covers the supplied written material.</p></div>
+            <div class="coverage-meter reveal"><div><span>93 / 93 source pages accounted for</span><strong>100%</strong></div><i></i><p>Coverage means that each supplied page is mapped to an original summary, source note, or defensive lesson—not that the copyrighted text is reproduced. The ebook also notes that original course videos and selected exercises require course enrollment and are not present in the publication.</p></div>
+        </div>
+    </section>
+
+    <section class="source-audit" id="source-audit" aria-labelledby="source-audit-title">
+        <canvas id="coverageCanvas" aria-hidden="true"></canvas>
+        <div class="container audit-shell">
+            <div class="audit-heading reveal">
+                <div><p class="eyebrow">Source audit // 39 non-overlapping ranges</p><h2 id="source-audit-title">One constellation.<br>All 93 pages.</h2></div>
+                <p>The ledger below accounts for every supplied page from the cover through the closing references. Select a page node to see what it contains and where its defensive adaptation lives in this field guide.</p>
+            </div>
+            <div class="audit-metrics reveal" aria-label="Source coverage totals">
+                <article><strong id="auditPageCount">93</strong><span>Pages accounted</span></article>
+                <article><strong id="auditRangeCount">39</strong><span>Source ranges</span></article>
+                <article><strong id="auditLessonCount">26</strong><span>Trackable lessons</span></article>
+                <article><strong>0</strong><span>Pages unassigned</span></article>
+            </div>
+            <div class="audit-toolbar reveal" aria-label="Filter source ledger">
+                <span>Filter source</span>
+                <div role="group" aria-label="Source section filters">
+                    <button type="button" class="active" data-audit-filter="all">All 93</button>
+                    <button type="button" data-audit-filter="front">Front matter</button>
+                    <button type="button" data-audit-filter="pre">Pre-course</button>
+                    <button type="button" data-audit-filter="m1">Module 01</button>
+                    <button type="button" data-audit-filter="m2">Module 02</button>
+                    <button type="button" data-audit-filter="m3">Module 03</button>
+                    <button type="button" data-audit-filter="m4">Module 04</button>
+                </div>
+            </div>
+            <div class="audit-interface reveal">
+                <div class="page-constellation" id="pageConstellation" role="group" aria-label="Pages 1 through 93"></div>
+                <aside class="audit-detail" id="auditDetail" aria-live="polite">
+                    <span>SELECT A PAGE NODE</span><strong>Pages 01–02</strong><h3>Cover and publication context</h3><p>Course identity, publication metadata, contributor roles, ownership notice, and the private/local authorized-use boundary.</p><a href="#course-brief-title">Open mapped section <i aria-hidden="true"></i></a>
+                </aside>
+            </div>
+            <div class="coverage-ledger" id="coverageLedger" aria-label="Page-by-page source coverage ledger"></div>
+            <div class="audit-note reveal"><strong>Fidelity rule.</strong><p>Technical substance is paraphrased into current, defensive guidance. Historical payloads and tool procedures are summarized at concept level where reproducing them would add operational risk; old defaults, APIs, hash guidance, and product behavior are not presented as current best practice.</p></div>
         </div>
     </section>
 
@@ -291,6 +330,18 @@
                     <p>A data store is a repository for persistently storing and managing collections of data. This includes not just databases, but also simpler store types such as files, emails, etc. A database is a series of bytes managed by a DBMS, while a file is managed by a file system. Any database or file that is stored is called a data store.</p>
                     <p>The most common data stores are <strong>SQL databases</strong>, <strong>XML-based repositories</strong>, and <strong>LDAP directories</strong>.</p>
                 </div>
+            </div>
+
+            <div class="content-block reveal">
+                <h3><span class="icon">TB</span> Application trust boundaries</h3>
+                <p class="block-desc">The source repeatedly separates client presentation from server authority. Hidden fields, disabled controls, browser scripts, and values retrieved from storage are all untrusted when they cross into a new interpreter or authorization decision.</p>
+                <div class="trust-flow" aria-label="Application trust boundary sequence">
+                    <div><b>01</b><span>Browser</span><small>Controls improve usability, not trust</small></div>
+                    <i aria-hidden="true"></i><div><b>02</b><span>Server validation</span><small>Re-check type, range, ownership, and action</small></div>
+                    <i aria-hidden="true"></i><div><b>03</b><span>Query boundary</span><small>Bind values; allowlist structural choices</small></div>
+                    <i aria-hidden="true"></i><div><b>04</b><span>Data store</span><small>Use a least-privileged identity</small></div>
+                </div>
+                <div class="two-col"><div><h4>Never trust hidden state</h4><p>A hidden field is still controlled by the client. Recalculate prices, roles, object ownership, and other security-sensitive state on the server instead of accepting a browser-provided answer.</p></div><div><h4>Stored does not mean safe</h4><p>Data that passed one boundary may be dangerous at the next. Validate for the current business rule and parameterize every use, including jobs, admin tools, exports, and second-order flows.</p></div></div>
             </div>
 
             <div class="content-block">
@@ -644,6 +695,20 @@ if (typeof username !== 'string' ||
             </div>
 
             <div class="content-block reveal">
+                <h3><span class="icon">VC</span> Validation contracts &amp; output contexts</h3>
+                <p class="block-desc">Pages 79–82 distinguish positive validation, negative filtering, and context-specific output handling. Modern secure design uses them as layers around parameterization—not substitutes for it.</p>
+                <div class="validation-spectrum">
+                    <article><b>01</b><h4>Known value</h4><p>Choose from an explicit set when the business domain is finite.</p></article>
+                    <article><b>02</b><h4>Data type</h4><p>Reject objects, arrays, floats, or strings when a different primitive is required.</p></article>
+                    <article><b>03</b><h4>Size</h4><p>Set byte and character limits before processing or persistence.</p></article>
+                    <article><b>04</b><h4>Range</h4><p>Enforce minimums, maximums, and legal state transitions.</p></article>
+                    <article><b>05</b><h4>Content</h4><p>Use anchored, whole-value formats and business checks—not partial matches.</p></article>
+                </div>
+                <div class="two-col"><div><h4>Allowlist first</h4><p>Accept input that satisfies the complete contract. A blacklist can add telemetry for known-bad forms, but the representation space is too large for it to define trust.</p></div><div><h4>Encode for the destination</h4><p>HTML, URLs, logs, LDAP filters, XPath, and database patterns have different metacharacters. A valid surname containing an apostrophe is still data; bind it rather than deleting or hand-escaping it.</p></div></div>
+                <div class="insight"><strong>Pattern semantics matter</strong><p>Parameterized values remain data, but database pattern operators such as <code>LIKE</code> still interpret <code>%</code> and <code>_</code>. Escape those only when the product intends literal matching, and declare the escape character explicitly.</p></div>
+            </div>
+
+            <div class="content-block reveal">
                 <h3><span class="icon">✓</span> The secure query pipeline</h3>
                 <div class="secure-pipeline"><div><b>01</b><span>Canonicalize</span><small>Decode once; normalize Unicode; reject ambiguous forms</small></div><i>→</i><div><b>02</b><span>Allowlist</span><small>Type, length, range, format, known values</small></div><i>→</i><div><b>03</b><span>Parameterize</span><small>Bind every value; keep structure fixed</small></div><i>→</i><div><b>04</b><span>Authorize</span><small>Check object and action, not just query validity</small></div><i>→</i><div><b>05</b><span>Encode</span><small>Apply context-specific output handling</small></div></div>
                 <div class="two-col"><div><h4>Positive vs. negative validation</h4><p>Allowlisting accepts only known-good type, size, range, format, and content. Blacklisting rejects known-bad patterns and is inherently incomplete. Use it only as an additional signal, never alone.</p></div><div><h4>Output encoding</h4><p>Encoding is context-specific: database values, HTML, URLs, logs, and command arguments have different rules. Escaping dynamic SQL is error-prone; prefer prepared statements.</p></div></div>
@@ -657,9 +722,31 @@ if (typeof username !== 'string' ||
              WHERE username = ?
              AND password_hash = ?`;
 connection.execute(sql, [username, hash]);</code></pre></div></div>
+                <div class="binding-grid">
+                    <article><span>POSITIONAL</span><h4>Driver APIs</h4><p>JDBC-style and many native drivers use <code>?</code> placeholders. Bind each position with a typed setter or value array; indexing conventions vary by API, so follow the maintained driver contract.</p></article>
+                    <article><span>NAMED</span><h4>ORM / query APIs</h4><p>Named placeholders such as <code>:username</code> make larger statements easier to review. They are safe only when the framework binds them rather than performing string substitution.</p></article>
+                    <article><span>STRUCTURAL</span><h4>Fixed mappings</h4><p>Table names, column names, operators, and sort direction are SQL grammar, not values. Translate user choices through a closed server-side map instead of inserting raw text.</p></article>
+                </div>
                 <div class="insight"><strong>Important limits</strong><p>Bind every value in every query, including second-order data. Placeholders generally cannot represent table names, column names, sort direction, or other structural keywords—map those choices from fixed allowlists.</p></div>
             </div>
 
+
+            <div class="content-block reveal">
+                <h3><span class="icon">CN</span> Canonicalization &amp; Unicode normalization</h3>
+                <p class="block-desc">Pages 87–89 show why the same character can arrive through URL, HTML, nested, or Unicode representations. Security controls must agree on one well-formed representation before validation and authorization.</p>
+                <div class="canonical-flow">
+                    <div><span>RAW</span><code>transport bytes</code><small>Apply strict size limits</small></div><i></i>
+                    <div><span>DECODE</span><code>one expected layer</code><small>Reject malformed or unexpected nesting</small></div><i></i>
+                    <div><span>NORMALIZE</span><code>documented Unicode form</code><small>Preserve legitimate language data</small></div><i></i>
+                    <div><span>VALIDATE</span><code>business contract</code><small>Type, range, ownership, content</small></div>
+                </div>
+                <div class="two-col"><div><h4>Decode at one boundary</h4><p>Distributed double-decoding is dangerous because a proxy, framework, and application may each see a different string. Define which layer decodes each transport encoding and reject input that remains unexpectedly encoded.</p></div><div><h4>Normalize deliberately</h4><p>Validate well-formed UTF-8 and choose a documented normalization form for identifiers or comparisons. Do not downgrade multilingual text to a narrower character set merely to simplify validation; that is lossy and can corrupt legitimate data.</p></div></div>
+                <div class="code-block"><div class="code-header"><span>Modern normalization boundary (JavaScript)</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><code>const decoded = decodeURIComponent(rawTransportValue); // once, at the owner boundary
+if (/%[0-9a-f]{2}/i.test(decoded)) reject('unexpected nested encoding');
+const canonical = decoded.normalize('NFKC');
+validateBusinessContract(canonical);</code></pre></div>
+                <p class="caption">Normalization is not sanitization and cannot replace parameterization. Compatibility normalization such as NFKC can change text semantics; select a form appropriate to the field and document the decision.</p>
+            </div>
 
             <div class="content-block reveal">
                 <h3><span class="icon">◇</span> Least privilege &amp; sensitive data</h3>
@@ -722,7 +809,9 @@ connection.execute(sql, [username, hash]);</code></pre></div></div>
                 <article><span>01</span><div><h3>The Web Application Hacker's Handbook</h3><p>Finding and Exploiting Security Flaws, second edition. Cited by the advanced SQL and datastore chapters.</p></div></article>
                 <article><span>02</span><div><h3>OWASP injection guidance</h3><p>SQL injection, blind SQL injection, LDAP injection, and XPath injection references appear throughout the support material.</p></div></article>
                 <article><span>03</span><div><h3>SQL Injection Attacks and Defenses</h3><p>Listed in the final reading materials alongside specialist time-based and operating-system-control research.</p></div></article>
-                <article><span>04</span><div><h3>Pre-course foundations</h3><p>Introductory SQL, web application, and SQL injection reading from Wikipedia, W3Schools, Codecademy, SQLCourse, and OWASP.</p></div></article>
+                <article><span>04</span><div><h3>Blind SQL and OS-boundary research</h3><p>Module 2 names blind-inference guidance, time-based specialist material, and historical research on the path from database injection to operating-system control.</p></div></article>
+                <article><span>05</span><div><h3>LDAP and XPath injection guidance</h3><p>Module 3 points to OWASP LDAP and XPath injection material alongside the second edition of the Web Application Hacker's Handbook.</p></div></article>
+                <article><span>06</span><div><h3>Pre-course foundations</h3><p>Introductory SQL, web application, and SQL injection reading from Wikipedia, W3Schools, Codecademy, SQLCourse, and OWASP.</p></div></article>
                 <p class="legacy-note">These entries preserve the book's bibliography at a title/category level. Consult current editions and maintained vendor or OWASP documentation before applying technical guidance.</p>
             </div>
         </div>
@@ -735,7 +824,7 @@ connection.execute(sql, [username, hash]);</code></pre></div></div>
     </section>
     </main>
 
-    <footer><div class="container footer-grid"><div><span class="brand-text">SQLi<span class="accent">Lab</span></span><p>An independent interactive adaptation of the complete 93-page Hakin9 workshop material. For education and explicitly authorized testing only.</p></div><div><span>Course map</span><a href="#mission-control">Mission control</a><a href="#book-map">93-page book map</a><a href="#module1">Foundations</a><a href="#module2">Advanced SQLi</a><a href="#module3">XPath &amp; LDAP</a><a href="#module4">Defense</a><a href="#checkpoint">Defensive checkpoint</a><a href="#reading">Conclusion &amp; reading</a></div><div><span>Source material</span><p>Web Application Hacking: Advanced SQL Injection and Data Store Attacks</p><small>Thomas Sermpinis · Hakin9 Workshops · Vol. 12, No. 03</small></div></div><div class="footer-line"><span>NO DATABASE. NO NETWORK CALLS. SAFE SIMULATION.</span><a class="to-top" href="#home">Back to top <i aria-hidden="true"></i></a></div></footer>
+    <footer><div class="container footer-grid"><div><span class="brand-text">SQLi<span class="accent">Lab</span></span><p>An independent interactive adaptation of the complete 93-page Hakin9 workshop material. For education and explicitly authorized testing only.</p></div><div><span>Course map</span><a href="#mission-control">Mission control</a><a href="#source-audit">93-page source audit</a><a href="#book-map">Course map</a><a href="#module1">Foundations</a><a href="#module2">Advanced SQLi</a><a href="#module3">XPath &amp; LDAP</a><a href="#module4">Defense</a><a href="#checkpoint">Defensive checkpoint</a><a href="#reading">Conclusion &amp; reading</a></div><div><span>Source material</span><p>Web Application Hacking: Advanced SQL Injection and Data Store Attacks</p><small>Thomas Sermpinis · Hakin9 Workshops · Vol. 12, No. 03</small></div></div><div class="footer-line"><span>NO DATABASE. NO NETWORK CALLS. SAFE SIMULATION.</span><a class="to-top" href="#home">Back to top <i aria-hidden="true"></i></a></div></footer>
 
     <dialog class="search-dialog" id="searchDialog" aria-labelledby="searchTitle">
         <div class="search-shell">
@@ -751,5 +840,7 @@ connection.execute(sql, [username, hash]);</code></pre></div></div>
     <script src="js/main.js"></script>
     <script src="js/learning.js"></script>
     <script src="js/atelier.js"></script>
+    <script src="js/coverage.js"></script>
+    <script src="js/cinematic.js"></script>
 </body>
 </html>
