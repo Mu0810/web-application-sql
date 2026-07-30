@@ -20,6 +20,9 @@ SQLi Lab transforms the supplied 93-page Hakin9 workshop into a searchable, inte
 - Mission Control readiness score and module telemetry
 - Twelve-question defensive checkpoint with explanations and ranking
 - Downloadable local progress record
+- Four switchable palettes and a cinematic/calm motion control
+- Ambient query-stream hero canvas, pointer light, and pointer-reactive card depth
+- Font-independent iconography drawn in CSS instead of symbol glyphs
 - Responsive, accessible, reduced-motion-aware interface
 - Zero third-party runtime dependencies and no external asset requests
 
@@ -102,11 +105,31 @@ The simulator visualizes the difference between string concatenation and value b
 | Module 4 | 75–93 | NoSQL, validation, parameterization, least privilege, canonicalization, sensitive data |
 
 
+## Appearance and motion
+
+The palette control in the navigation bar switches the entire interface between four coordinated themes. Every surface, accent, code colour, and light "paper" section is derived from two palette tokens (`--accent` and `--accent2`), so a theme change re-colours the whole course rather than a single component.
+
+| Palette | Character |
+| --- | --- |
+| Terminal | Default green and cyan on near-black |
+| Noir | Violet base with magenta and indigo accents |
+| Amber CRT | Warm brown base with amber and ember accents |
+| Blueprint | Deep navy base with ice and ink blue accents |
+
+The same panel toggles ambient motion:
+
+- **Cinematic** enables the hero query-stream canvas, pointer light, card tilt, parallax, and heading decode.
+- **Calm** disables all ambient motion while keeping every piece of content and interaction intact.
+
+The selected palette and motion mode persist in browser storage and are applied before first paint, so the page never flashes a different theme. When the operating system reports `prefers-reduced-motion: reduce`, calm mode is selected automatically.
+
 ## Navigation and keyboard controls
 
 | Action | Control |
 | --- | --- |
 | Open course search | `Ctrl + K`, `Cmd + K`, or `/` |
+| Cycle palette | `T` |
+| Toggle cinematic / calm motion | `M` |
 | Navigate search results | `Arrow Up` / `Arrow Down` |
 | Open selected result | `Enter` |
 | Close search | `Esc` |
@@ -117,7 +140,9 @@ Every chapter heading receives a stable deep link. The interface also includes a
 
 ## Local data and privacy
 
-SQLi Lab has no account system and no analytics. Learning state is stored in the browser under keys prefixed with `sqli-`, including:
+SQLi Lab has no account system and no analytics. Learning and appearance state is stored in the browser under keys prefixed with `sqli-`, including:
+
+- Selected palette and motion mode
 
 - Completed chapters and bookmarks
 - Visited modules and resume location
@@ -137,10 +162,12 @@ Mission Control reports whether storage is persistent for the current origin. If
 ├── css/
 │   ├── style.css         # Base design system and responsive layout
 │   ├── animations.css    # Reveal, typing, and reduced-motion rules
-│   └── upgrade.css       # Immersive UI, Mission Control, and checkpoint
+│   ├── upgrade.css       # Immersive UI, Mission Control, and checkpoint
+│   └── atelier.css       # Palette engine, depth layers, and drawn iconography
 └── js/
     ├── main.js           # Navigation, search, simulator, tabs, and checklist
-    └── learning.js       # Completion, bookmarks, readiness, quiz, and export
+    ├── learning.js       # Completion, bookmarks, readiness, quiz, and export
+    └── atelier.js        # Theme engine, ambient canvas, tilt, and decode effects
 ```
 
 The project intentionally uses plain HTML, CSS, and JavaScript. There is no bundler, framework, runtime package, database, or remote API.

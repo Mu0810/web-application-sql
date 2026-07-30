@@ -9,10 +9,21 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/upgrade.css">
+    <link rel="stylesheet" href="css/atelier.css">
+    <script>
+        // Apply the saved palette before first paint so the page never flashes a different theme.
+        try {
+            var savedTheme = localStorage.getItem('sqli-theme');
+            var savedMotion = localStorage.getItem('sqli-motion');
+            if (['terminal', 'noir', 'amber', 'blueprint'].indexOf(savedTheme) > -1) document.documentElement.dataset.theme = savedTheme;
+            if (savedMotion === 'calm' || savedMotion === 'cinematic') document.documentElement.dataset.motion = savedMotion;
+        } catch (error) { /* storage unavailable: fall back to the default palette */ }
+    </script>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to course content</a>
     <div class="reading-progress" aria-hidden="true"><i id="readingProgressBar"></i></div>
+    <div class="pointer-glow" id="pointerGlow" aria-hidden="true"></div>
     <div class="matrix-bg" id="matrixBg"></div>
     <nav class="navbar" id="navbar" aria-label="Primary navigation">
         <a class="nav-brand" href="#home" aria-label="SQLi Lab home">
@@ -33,6 +44,22 @@
         </ul>
         <div class="nav-actions">
             <button class="search-trigger" id="searchTrigger" type="button" aria-haspopup="dialog" aria-controls="searchDialog"><span aria-hidden="true">⌕</span><span>Search course</span><kbd>⌘K</kbd></button>
+            <div class="atelier-control">
+                <button class="theme-trigger" id="themeTrigger" type="button" aria-expanded="false" aria-controls="themeMenu"><i aria-hidden="true"></i><span id="themeName">Terminal</span></button>
+                <div class="theme-menu" id="themeMenu" role="dialog" aria-label="Appearance and motion" hidden>
+                    <span>Palette <kbd>T</kbd></span>
+                    <div class="theme-grid" role="radiogroup" aria-label="Colour palette">
+                        <button class="theme-swatch" type="button" role="radio" aria-checked="true" data-theme="terminal"><b aria-hidden="true"><i style="background:#030706"></i><i style="background:#a8ff78"></i><i style="background:#65e7ff"></i></b>Terminal</button>
+                        <button class="theme-swatch" type="button" role="radio" aria-checked="false" data-theme="noir"><b aria-hidden="true"><i style="background:#05040c"></i><i style="background:#ff5ec7"></i><i style="background:#9a8cff"></i></b>Noir</button>
+                        <button class="theme-swatch" type="button" role="radio" aria-checked="false" data-theme="amber"><b aria-hidden="true"><i style="background:#080603"></i><i style="background:#ffb340"></i><i style="background:#ff7a45"></i></b>Amber CRT</button>
+                        <button class="theme-swatch" type="button" role="radio" aria-checked="false" data-theme="blueprint"><b aria-hidden="true"><i style="background:#030913"></i><i style="background:#cfe4ff"></i><i style="background:#4d9dff"></i></b>Blueprint</button>
+                    </div>
+                    <div class="motion-row">
+                        <span>Ambient motion <kbd>M</kbd></span>
+                        <button class="motion-toggle" id="motionToggle" type="button" aria-pressed="true"><i aria-hidden="true"></i><span id="motionState">Cinematic</span></button>
+                    </div>
+                </div>
+            </div>
             <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation" aria-controls="navLinks" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
@@ -53,6 +80,7 @@
 
     <!-- HERO SECTION -->
     <section class="hero" id="home">
+        <canvas class="query-rain" id="queryRain" aria-hidden="true"></canvas>
         <div class="hero-network" aria-hidden="true">
             <span class="network-line l1"></span><span class="network-line l2"></span><span class="network-line l3"></span>
             <i class="network-node n1"></i><i class="network-node n2"></i><i class="network-node n3"></i><i class="network-node n4"></i>
@@ -106,6 +134,28 @@
             <div><span>03</span><strong>Safe by design</strong><small>No database or network calls</small></div>
             <div><span>04</span><strong>Progress persists</strong><small>Resume where you stopped</small></div>
         </div>
+    </section>
+
+    <section class="signal-ticker" aria-label="Interpreter boundaries covered by the course">
+        <div class="ticker-track" aria-hidden="true">
+            <span><b>SQL</b> concatenation breaks structure</span>
+            <span><b>Blind SQLi</b> boolean and time signals</span>
+            <span><b>XPath</b> dynamic node selection</span>
+            <span><b>LDAP</b> filter metacharacters</span>
+            <span><b>XML</b> DTDs and external entities</span>
+            <span><b>NoSQL</b> operator objects</span>
+            <span><b>Second order</b> stored payloads</span>
+            <span><b>Defense</b> bind every value</span>
+            <span><b>SQL</b> concatenation breaks structure</span>
+            <span><b>Blind SQLi</b> boolean and time signals</span>
+            <span><b>XPath</b> dynamic node selection</span>
+            <span><b>LDAP</b> filter metacharacters</span>
+            <span><b>XML</b> DTDs and external entities</span>
+            <span><b>NoSQL</b> operator objects</span>
+            <span><b>Second order</b> stored payloads</span>
+            <span><b>Defense</b> bind every value</span>
+        </div>
+        <p class="ticker-note">Interpreter boundaries covered: SQL, blind SQL, XPath, LDAP, XML, NoSQL, second-order flows, and defensive design.</p>
     </section>
 
     <section class="mission-control" id="mission-control" aria-labelledby="mission-title">
@@ -181,7 +231,7 @@
             <article class="brief-copy reveal">
                 <p class="eyebrow">Course file // 18 CPE credits</p>
                 <h2 id="course-brief-title">Think like an attacker.<br><span>Build like a defender.</span></h2>
-                <p>This self-paced field guide transforms Thomas Serminis' workshop into an interactive reference. It covers relational, XML, directory, and NoSQL data stores—from first principles to secure engineering.</p>
+                <p>This self-paced field guide transforms Thomas Sermpinis' workshop into an interactive reference. It covers relational, XML, directory, and NoSQL data stores—from first principles to secure engineering.</p>
                 <div class="scope-note"><strong>Authorized environments only.</strong> Practice in an isolated lab such as DVWA. Never test systems without explicit permission.</div>
             </article>
             <div class="brief-panel reveal">
@@ -194,7 +244,7 @@
                 </ul>
                 <div class="instructor-row">
                     <div class="avatar" aria-hidden="true">TS</div>
-                    <div><span>Course instructor</span><strong>Thomas Serminis</strong><small>8 years in security · Java, C++, Python · penetration-testing and Android security editor · security blogger</small></div>
+                    <div><span>Course instructor</span><strong>Thomas Sermpinis</strong><small>8 years in security · Java, C++, Python · penetration-testing and Android security editor · security blogger</small></div>
                 </div>
             </div>
         </div>
@@ -685,7 +735,7 @@ connection.execute(sql, [username, hash]);</code></pre></div></div>
     </section>
     </main>
 
-    <footer><div class="container footer-grid"><div><span class="brand-text">SQLi<span class="accent">Lab</span></span><p>An independent interactive adaptation of the complete 93-page Hakin9 workshop material. For education and explicitly authorized testing only.</p></div><div><span>Course map</span><a href="#mission-control">Mission control</a><a href="#book-map">93-page book map</a><a href="#module1">Foundations</a><a href="#module2">Advanced SQLi</a><a href="#module3">XPath &amp; LDAP</a><a href="#module4">Defense</a><a href="#checkpoint">Defensive checkpoint</a><a href="#reading">Conclusion &amp; reading</a></div><div><span>Source material</span><p>Web Application Hacking: Advanced SQL Injection and Data Store Attacks</p><small>Thomas Serminis · Hakin9 Workshops · Vol. 12, No. 03</small></div></div><div class="footer-line"><span>NO DATABASE. NO NETWORK CALLS. SAFE SIMULATION.</span><a href="#home">Back to top ↑</a></div></footer>
+    <footer><div class="container footer-grid"><div><span class="brand-text">SQLi<span class="accent">Lab</span></span><p>An independent interactive adaptation of the complete 93-page Hakin9 workshop material. For education and explicitly authorized testing only.</p></div><div><span>Course map</span><a href="#mission-control">Mission control</a><a href="#book-map">93-page book map</a><a href="#module1">Foundations</a><a href="#module2">Advanced SQLi</a><a href="#module3">XPath &amp; LDAP</a><a href="#module4">Defense</a><a href="#checkpoint">Defensive checkpoint</a><a href="#reading">Conclusion &amp; reading</a></div><div><span>Source material</span><p>Web Application Hacking: Advanced SQL Injection and Data Store Attacks</p><small>Thomas Sermpinis · Hakin9 Workshops · Vol. 12, No. 03</small></div></div><div class="footer-line"><span>NO DATABASE. NO NETWORK CALLS. SAFE SIMULATION.</span><a class="to-top" href="#home">Back to top <i aria-hidden="true"></i></a></div></footer>
 
     <dialog class="search-dialog" id="searchDialog" aria-labelledby="searchTitle">
         <div class="search-shell">
@@ -700,5 +750,6 @@ connection.execute(sql, [username, hash]);</code></pre></div></div>
     <div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard</div>
     <script src="js/main.js"></script>
     <script src="js/learning.js"></script>
+    <script src="js/atelier.js"></script>
 </body>
 </html>
